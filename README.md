@@ -2,6 +2,12 @@
 
 ### A concise and elegant easy-to-use picture browser.
 
+## Features
+
+* Similar to the Pengyouquan's picture browser.
+* Loading image with animation, blurring the current view background.
+* Currently, the download image depends on SDWebImage, I will rewrite the download and cache image function, do not rely on third-party libraries.
+
 ## Show pictures
 
 ![image](./show.gif)    
