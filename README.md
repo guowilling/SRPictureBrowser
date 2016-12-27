@@ -4,10 +4,8 @@
 
 ## Show pictures
 
-![image](./show0.gif)    
-
-![image](./show1.png)
-![image](./show2.png)
+![image](./show.gif)    
+![image](./show.png)
 
 ## Usage
 
