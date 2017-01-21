@@ -1,16 +1,24 @@
 # SRPictureBrowser
 
-### A concise and elegant easy-to-use picture browser.
-
 ## Features
 
-* Similar to the Pengyouquan's picture browser.
-* Loading image with animation, blurring the current view background.
-* Currently, the download image depends on SDWebImage, I will rewrite the download and cache image function, do not rely on third-party libraries.
+* Similar to the Pengyouquan's picture browser, Loading image with animation, blurring the current view background.
+* Long press the image to show action sheet, save image etc, you can extend it.
+* Currently, the download image depends on SDWebImage, I will rewrite the download and cache image function, do not rely on third-party libraries some time.
+
+***
+
+* 类似于朋友圈的图片浏览器, 图片加载动画, 模糊当前视图背景.
+* 长按弹出选择器, 保存图片等, 你可以扩展它的功能.
+* 目前, 图片下载依赖于 SDWebImage, 以后我会不依赖于第三方库, 重写下载缓存图片的功能.
+
 
 ## Show pictures
 
-![image](./show.gif)    
+![image](./show.gif)
+
+***
+
 ![image](./show.png)
 
 ## Usage
