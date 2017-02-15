@@ -8,8 +8,6 @@
 
 #import "ViewController.h"
 #import "SRPictureBrowser.h"
-#import "SRPictureModel.h"
-#import "SRPictureView.h"
 
 @interface ViewController ()
 

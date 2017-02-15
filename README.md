@@ -20,7 +20,7 @@
 ## Installation
 
 ### CocoaPods
-> Add **pod ‘SRPictureBrowser’** to the Podfile, then run **pod install** in the terminal.
+> Add **pod 'SRPictureBrowser'** to the Podfile, then run **pod install** in the terminal.
 
 ### Manual
 > Drag the **SRPictureBrowser** folder to the project.(Note: if the project has already import SDWebImage, you should remove it which in the SRPictureBrowser folder)
