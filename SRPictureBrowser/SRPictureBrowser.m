@@ -11,15 +11,13 @@
 #import "SRPictureCell.h"
 #import "SRPictureView.h"
 #import "SRPictureMacro.h"
-#import "UIImage+ImageEffects.h"
-#import "SRActionSheet.h"
+#import "UIImage+SRImageEffects.h"
 #import "SDWebImageManager.h"
 #import "SDWebImagePrefetcher.h"
-#import "MBProgressHUD.h"
 
 #define kPictureBrowserWidth   (SR_SCREEN_WIDTH + 10)
 
-@interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIAlertViewDelegate, SRPictureViewDelegate>
+@interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureViewDelegate>
 
 @property (nonatomic, copy) NSArray *pictureModels;
 
@@ -147,29 +145,26 @@
 
 - (void)pictureViewDidLongPress {
     
-    SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:nil
-                                                                cancelTitle:@"取消"
-                                                           destructiveTitle:nil
-                                                                otherTitles:@[@"保存图片"]
-                                                                otherImages:nil
-                                                           selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index) {
-                                                               if (index == 0) {
-                                                                   UIImageWriteToSavedPhotosAlbum(self.currentPictureView.imageView.image, self,
-                                                                                                  @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-                                                               }
-                                                           }];
-    [actionSheet show];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"保存图片", nil];
+    [actionSheet showInView:self];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        UIImageWriteToSavedPhotosAlbum(self.currentPictureView.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+    }
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     
     if (!error) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
-        hud.mode = MBProgressHUDModeCustomView;
-        hud.customView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"Checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-        hud.square = YES;
-        hud.label.text = @"保存图片成功";
-        [hud hideAnimated:YES afterDelay:2.0f];
+        NSLog(@"Save Image Success");
+    } else {
+        NSLog(@"Save Image Failure");
     }
 }
 

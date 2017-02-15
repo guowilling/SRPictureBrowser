@@ -93,13 +93,13 @@
  5/3/2013
  */
 
-#import "UIImage+ImageEffects.h"
+#import "UIImage+SRImageEffects.h"
 
 @import Accelerate;
 #import <float.h>
 
 
-@implementation UIImage (ImageEffects)
+@implementation UIImage (SRImageEffects)
 
 
 - (UIImage *)applyLightEffect
