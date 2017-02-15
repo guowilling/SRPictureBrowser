@@ -73,31 +73,28 @@ static CGFloat const kMinimumZoomScale = 1.0f;
         _pictureIndicator = [_pictureIndicator hide];
         _pictureIndicator = nil;
     }
-    
-    BOOL isImageCached = [[SDWebImageManager sharedManager] cachedImageExistsForURL:[NSURL URLWithString:self.pictureModel.picURLString]];
-    if (isImageCached) {
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.pictureModel.picURLString]];
-        
-        if (self.pictureModel.isFirstShow) {
-            self.imageView.frame = self.pictureModel.originPosition;
-            [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
+    [[SDWebImageManager sharedManager] cachedImageExistsForURL:[NSURL URLWithString:self.pictureModel.picURLString] completion:^(BOOL isInCache) {
+        if (isInCache) {
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.pictureModel.picURLString]];
+            if (self.pictureModel.isFirstShow) {
+                self.imageView.frame = self.pictureModel.originPosition;
+                [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
+                    self.imageView.frame = self.pictureModel.destinationPosition;
+                } completion:nil];
+            } else {
                 self.imageView.frame = self.pictureModel.destinationPosition;
-            } completion:nil];
+            }
         } else {
+            self.imageView.image = nil;
             self.imageView.frame = self.pictureModel.destinationPosition;
+            _pictureIndicator = [SRPictureIndicator showInView:self];
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.pictureModel.picURLString]
+                                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                         _pictureIndicator = [_pictureIndicator hide];
+                                         _pictureIndicator = nil;
+                                     }];
         }
-
-    } else {
-        self.imageView.image = nil;
-        self.imageView.frame = self.pictureModel.destinationPosition;
-        
-        _pictureIndicator = [SRPictureIndicator showInView:self];
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.pictureModel.picURLString]
-                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                     _pictureIndicator = [_pictureIndicator hide];
-                                     _pictureIndicator = nil;
-                                 }];
-    }
+    }];
 }
 
 #pragma mark - UIScrollViewDelegate
