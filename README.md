@@ -9,9 +9,8 @@
 ***
 
 * 类似于朋友圈的图片浏览器, 图片加载动画, 模糊当前视图背景.
-* 长按弹出选择器, 保存图片等, 你可以扩展它的功能.
-* 目前, 图片下载依赖于 SDWebImage, 以后我会不依赖于第三方库, 重写下载缓存图片的功能.
-
+* 长按弹出选择器, 保存图片等, 你可以自行扩展它的功能.
+* 目前图片下载缓存使用 SDWebImage, 以后再不依赖于第三方库, 重写下载缓存图片的功能.
 
 ## Show pictures
 
@@ -20,6 +19,14 @@
 ***
 
 ![image](./show.png)
+
+## Installation
+
+### CocoaPods
+> Add **pod ‘SRPictureBrowser’** to the Podfile, then run **pod install** in the terminal.
+
+### Manual
+> Drag the **SRPictureBrowser** folder to the project.(Note: if the project has already import SDWebImage, you should remove it which in the SRAlertView folder)
 
 ## Usage
 
@@ -35,10 +42,9 @@ for (NSInteger i = 0; i < 9; i ++) {
 }
 SRPictureBrowser *pictureBrowser = [SRPictureBrowser sr_pictureBrowserWithModels:imageBrowserModels currentIndex:tapedImageView.tag];
 [pictureBrowser show];
-
-// You can see the demo for more information.
 ````
+See the demo for more information.
 
-**If you have any question, please issue or contact me.**   
+**If you have any question, submit an issue or contact me.**   
 **If this repo helps you, please give it a star, thanks a lot.**  
 **Have Fun.**
