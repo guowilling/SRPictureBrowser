@@ -15,7 +15,6 @@
 ## Show pictures
 
 ![image](./show.gif)
-![image](./show.png)
 
 ## Installation
 
