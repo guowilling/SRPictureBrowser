@@ -7,7 +7,7 @@
 * Long press the image to show action sheet.
 * ...
 
-## Show pictures
+## Show
 
 ![image](./show.gif)
 
