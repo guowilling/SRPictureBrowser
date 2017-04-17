@@ -38,7 +38,3 @@ See the demo for more information.
 
 ## TODO
 > Currently, the download image depends on SDWebImage, I will rewrite the download and cache image function, do not rely on third-party libraries some time.
-
-**If you have any question, submit an issue or contact me.**   
-**If this repo helps you, please give it a star, thanks a lot.**  
-**Have Fun.**
