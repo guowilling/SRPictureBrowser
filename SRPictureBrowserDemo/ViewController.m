@@ -47,9 +47,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
-    
     self.title = @"SRPhotoBrowser";
-    
     
     UIView *container = [[UIView alloc] init];
     container.backgroundColor = [UIColor whiteColor];
@@ -61,7 +59,7 @@
     
     CGFloat margin = 10;
     CGFloat imageViewWH = (self.view.frame.size.width - 4 * margin) / 3;
-    for (int i = 0 ; i < 9; i++) {
+    for (int i = 0 ; i < self.picURLStrings.count; i++) {
         int col = i % 3;
         int row = i / 3;
         [container addSubview:({
@@ -73,8 +71,7 @@
             [self.imageViewFrames addObject:[NSValue valueWithCGRect:imageView.frame]];
             imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"coldplay%02d.jpg", i + 1]];
             imageView.userInteractionEnabled = YES;
-            UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                                   action:@selector(imageTapAction:)];
+            UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapAction:)];
             [imageView addGestureRecognizer:tapGestureRecognizer];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
@@ -87,7 +84,7 @@
     
     UIImageView *tapedImageView = (UIImageView *)tapGestureRecognizer.view;
     NSMutableArray *imageBrowserModels = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < 9; i ++) {
+    for (NSInteger i = 0; i < self.picURLStrings.count; i ++) {
         SRPictureModel *imageBrowserModel = [SRPictureModel sr_pictureModelWithPicURLString:self.picURLStrings[i]
                                                                               containerView:tapedImageView.superview
                                                                         positionInContainer:[self.imageViewFrames[i] CGRectValue]

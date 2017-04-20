@@ -33,8 +33,6 @@
 		68E825BB1E11196E002FB39B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68E825B91E11196E002FB39B /* Main.storyboard */; };
 		68E825BD1E11196E002FB39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68E825BC1E11196E002FB39B /* Assets.xcassets */; };
 		68E825C01E11196E002FB39B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68E825BE1E11196E002FB39B /* LaunchScreen.storyboard */; };
-		68E825CB1E11196E002FB39B /* SRPictureBrowserDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E825CA1E11196E002FB39B /* SRPictureBrowserDemoTests.m */; };
-		68E825D61E11196E002FB39B /* SRPictureBrowserDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E825D51E11196E002FB39B /* SRPictureBrowserDemoUITests.m */; };
 		68E8262D1E111A45002FB39B /* SRPictureBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E826101E111A45002FB39B /* SRPictureBrowser.m */; };
 		68E8262E1E111A45002FB39B /* SRPictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E826121E111A45002FB39B /* SRPictureCell.m */; };
 		68E8262F1E111A45002FB39B /* SRPictureIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E826141E111A45002FB39B /* SRPictureIndicator.m */; };
@@ -50,23 +48,6 @@
 		68E826431E111AF8002FB39B /* coldplay08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E8263A1E111AF8002FB39B /* coldplay08.jpg */; };
 		68E826441E111AF8002FB39B /* coldplay09.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E8263B1E111AF8002FB39B /* coldplay09.jpg */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		68E825C71E11196E002FB39B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 68E825A51E11196E002FB39B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 68E825AC1E11196E002FB39B;
-			remoteInfo = SRPictureBrowserDemo;
-		};
-		68E825D21E11196E002FB39B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 68E825A51E11196E002FB39B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 68E825AC1E11196E002FB39B;
-			remoteInfo = SRPictureBrowserDemo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		68A0AD991E53F2DA00A8BCEF /* UIImage+SRImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SRImageEffects.h"; sourceTree = "<group>"; };
@@ -121,12 +102,6 @@
 		68E825BC1E11196E002FB39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68E825BF1E11196E002FB39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68E825C11E11196E002FB39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		68E825C61E11196E002FB39B /* SRPictureBrowserDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SRPictureBrowserDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		68E825CA1E11196E002FB39B /* SRPictureBrowserDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SRPictureBrowserDemoTests.m; sourceTree = "<group>"; };
-		68E825CC1E11196E002FB39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		68E825D11E11196E002FB39B /* SRPictureBrowserDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SRPictureBrowserDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		68E825D51E11196E002FB39B /* SRPictureBrowserDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SRPictureBrowserDemoUITests.m; sourceTree = "<group>"; };
-		68E825D71E11196E002FB39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68E8260F1E111A45002FB39B /* SRPictureBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureBrowser.h; sourceTree = "<group>"; };
 		68E826101E111A45002FB39B /* SRPictureBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureBrowser.m; sourceTree = "<group>"; };
 		68E826111E111A45002FB39B /* SRPictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureCell.h; sourceTree = "<group>"; };
@@ -151,20 +126,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		68E825AA1E11196E002FB39B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68E825C31E11196E002FB39B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68E825CE1E11196E002FB39B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -233,8 +194,6 @@
 			children = (
 				68E825E31E111A45002FB39B /* SRPictureBrowser */,
 				68E825AF1E11196E002FB39B /* SRPictureBrowserDemo */,
-				68E825C91E11196E002FB39B /* SRPictureBrowserDemoTests */,
-				68E825D41E11196E002FB39B /* SRPictureBrowserDemoUITests */,
 				68E825AE1E11196E002FB39B /* Products */,
 				68A0ADEC1E53FD1E00A8BCEF /* Frameworks */,
 			);
@@ -244,8 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				68E825AD1E11196E002FB39B /* SRPictureBrowserDemo.app */,
-				68E825C61E11196E002FB39B /* SRPictureBrowserDemoTests.xctest */,
-				68E825D11E11196E002FB39B /* SRPictureBrowserDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -273,24 +230,6 @@
 				68E825C11E11196E002FB39B /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		68E825C91E11196E002FB39B /* SRPictureBrowserDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				68E825CA1E11196E002FB39B /* SRPictureBrowserDemoTests.m */,
-				68E825CC1E11196E002FB39B /* Info.plist */,
-			);
-			path = SRPictureBrowserDemoTests;
-			sourceTree = "<group>";
-		};
-		68E825D41E11196E002FB39B /* SRPictureBrowserDemoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				68E825D51E11196E002FB39B /* SRPictureBrowserDemoUITests.m */,
-				68E825D71E11196E002FB39B /* Info.plist */,
-			);
-			path = SRPictureBrowserDemoUITests;
 			sourceTree = "<group>";
 		};
 		68E825E31E111A45002FB39B /* SRPictureBrowser */ = {
@@ -350,42 +289,6 @@
 			productReference = 68E825AD1E11196E002FB39B /* SRPictureBrowserDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		68E825C51E11196E002FB39B /* SRPictureBrowserDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 68E825DD1E11196E002FB39B /* Build configuration list for PBXNativeTarget "SRPictureBrowserDemoTests" */;
-			buildPhases = (
-				68E825C21E11196E002FB39B /* Sources */,
-				68E825C31E11196E002FB39B /* Frameworks */,
-				68E825C41E11196E002FB39B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				68E825C81E11196E002FB39B /* PBXTargetDependency */,
-			);
-			name = SRPictureBrowserDemoTests;
-			productName = SRPictureBrowserDemoTests;
-			productReference = 68E825C61E11196E002FB39B /* SRPictureBrowserDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		68E825D01E11196E002FB39B /* SRPictureBrowserDemoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 68E825E01E11196E002FB39B /* Build configuration list for PBXNativeTarget "SRPictureBrowserDemoUITests" */;
-			buildPhases = (
-				68E825CD1E11196E002FB39B /* Sources */,
-				68E825CE1E11196E002FB39B /* Frameworks */,
-				68E825CF1E11196E002FB39B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				68E825D31E11196E002FB39B /* PBXTargetDependency */,
-			);
-			name = SRPictureBrowserDemoUITests;
-			productName = SRPictureBrowserDemoUITests;
-			productReference = 68E825D11E11196E002FB39B /* SRPictureBrowserDemoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -399,16 +302,6 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = Y4FK8UXDXW;
 						ProvisioningStyle = Manual;
-					};
-					68E825C51E11196E002FB39B = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 68E825AC1E11196E002FB39B;
-					};
-					68E825D01E11196E002FB39B = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 68E825AC1E11196E002FB39B;
 					};
 				};
 			};
@@ -426,8 +319,6 @@
 			projectRoot = "";
 			targets = (
 				68E825AC1E11196E002FB39B /* SRPictureBrowserDemo */,
-				68E825C51E11196E002FB39B /* SRPictureBrowserDemoTests */,
-				68E825D01E11196E002FB39B /* SRPictureBrowserDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -449,20 +340,6 @@
 				68E825BB1E11196E002FB39B /* Main.storyboard in Resources */,
 				68E826441E111AF8002FB39B /* coldplay09.jpg in Resources */,
 				68E8263F1E111AF8002FB39B /* coldplay04.jpg in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68E825C41E11196E002FB39B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68E825CF1E11196E002FB39B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,36 +381,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		68E825C21E11196E002FB39B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				68E825CB1E11196E002FB39B /* SRPictureBrowserDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68E825CD1E11196E002FB39B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				68E825D61E11196E002FB39B /* SRPictureBrowserDemoUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		68E825C81E11196E002FB39B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 68E825AC1E11196E002FB39B /* SRPictureBrowserDemo */;
-			targetProxy = 68E825C71E11196E002FB39B /* PBXContainerItemProxy */;
-		};
-		68E825D31E11196E002FB39B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 68E825AC1E11196E002FB39B /* SRPictureBrowserDemo */;
-			targetProxy = 68E825D21E11196E002FB39B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		68E825B91E11196E002FB39B /* Main.storyboard */ = {
@@ -675,52 +523,6 @@
 			};
 			name = Release;
 		};
-		68E825DE1E11196E002FB39B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = SRPictureBrowserDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willing.SRPictureBrowserDemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SRPictureBrowserDemo.app/SRPictureBrowserDemo";
-			};
-			name = Debug;
-		};
-		68E825DF1E11196E002FB39B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = SRPictureBrowserDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willing.SRPictureBrowserDemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SRPictureBrowserDemo.app/SRPictureBrowserDemo";
-			};
-			name = Release;
-		};
-		68E825E11E11196E002FB39B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = SRPictureBrowserDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willing.SRPictureBrowserDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = SRPictureBrowserDemo;
-			};
-			name = Debug;
-		};
-		68E825E21E11196E002FB39B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = SRPictureBrowserDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willing.SRPictureBrowserDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = SRPictureBrowserDemo;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -738,24 +540,6 @@
 			buildConfigurations = (
 				68E825DB1E11196E002FB39B /* Debug */,
 				68E825DC1E11196E002FB39B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		68E825DD1E11196E002FB39B /* Build configuration list for PBXNativeTarget "SRPictureBrowserDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				68E825DE1E11196E002FB39B /* Debug */,
-				68E825DF1E11196E002FB39B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		68E825E01E11196E002FB39B /* Build configuration list for PBXNativeTarget "SRPictureBrowserDemoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				68E825E11E11196E002FB39B /* Debug */,
-				68E825E21E11196E002FB39B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -5,11 +5,11 @@
 * Loading image with animation.
 * blurring the current view background.
 * Long press the image to show action sheet.
-* ...
 
 ## Show
 
 ![image](./show.gif)
+![image](./show.png)
 
 ## Installation
 
@@ -36,5 +36,4 @@ SRPictureBrowser *pictureBrowser = [SRPictureBrowser sr_pictureBrowserWithModels
 ````
 See the demo for more information.
 
-## TODO
-> Currently, the download image depends on SDWebImage, I will rewrite the download and cache image function, do not rely on third-party libraries some time.
+**Have Fun.**

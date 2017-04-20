@@ -6,15 +6,6 @@
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
-/**
- *  If you have any question, submit an issue or contact me.
- *  QQ: 1990991510
- *  Email: guowilling@qq.com
- *  If this repo helps you, please give it a star.
- *  Github: https://github.com/guowilling/SRPictureBrowser
- *  Have Fun.
- */
-
 #import <UIKit/UIKit.h>
 #import "SRPictureModel.h"
 
@@ -26,7 +17,7 @@
 + (instancetype)sr_pictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex;
 
 /**
- Show the picture browser.
+ Show picture browser.
  */
 - (void)show;
 
