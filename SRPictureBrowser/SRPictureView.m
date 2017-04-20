@@ -48,19 +48,17 @@ static CGFloat const kMinimumZoomScale = 1.0f;
 
 - (void)setupGestures {
     
-    {
-        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-        [self addGestureRecognizer:singleTap];
-        
-        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-        doubleTap.numberOfTapsRequired = 2;
-        [self.imageView addGestureRecognizer:doubleTap];
-        
-        [singleTap requireGestureRecognizerToFail:doubleTap];
-    }
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [self addGestureRecognizer:singleTap];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [self addGestureRecognizer:longPress];
+    
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.imageView addGestureRecognizer:doubleTap];
+    
+    [singleTap requireGestureRecognizerToFail:doubleTap];
 }
 
 - (void)setPictureModel:(SRPictureModel *)pictureModel {
@@ -88,11 +86,10 @@ static CGFloat const kMinimumZoomScale = 1.0f;
             self.imageView.image = nil;
             self.imageView.frame = self.pictureModel.destinationPosition;
             _pictureIndicator = [SRPictureIndicator showInView:self];
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.pictureModel.picURLString]
-                                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                         _pictureIndicator = [_pictureIndicator hide];
-                                         _pictureIndicator = nil;
-                                     }];
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.pictureModel.picURLString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                _pictureIndicator = [_pictureIndicator hide];
+                _pictureIndicator = nil;
+            }];
         }
     }];
 }

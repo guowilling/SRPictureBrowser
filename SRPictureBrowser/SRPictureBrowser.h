@@ -9,16 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "SRPictureModel.h"
 
+@class SRPictureBrowser;
+
+@protocol SRPictureBrowserDelegate <NSObject>
+
+@optional
+- (void)pictureBrowserDidShow:(SRPictureBrowser *)pictureBrowser;
+- (void)pictureBrowserDidDismiss;
+
+@end
+
 @interface SRPictureBrowser : UIView
 
 /**
- Create a SRPictureBrowser object with pictureModels and the currentIndex which will first display.
+ Show a SRPictureBrowser object with pictureModels and the currentIndex which will first display.
  */
-+ (instancetype)sr_pictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex;
-
-/**
- Show picture browser.
- */
-- (void)show;
++ (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate;
 
 @end

@@ -11,11 +11,11 @@
 #import "SRPictureCell.h"
 #import "SRPictureView.h"
 #import "SRPictureMacro.h"
-#import "UIImage+SRImageEffects.h"
 #import "SDWebImageManager.h"
 #import "SDWebImagePrefetcher.h"
+#import "UIImage+SRImageEffects.h"
 
-#define kPictureBrowserWidth   (SR_SCREEN_WIDTH + 10)
+#define kPictureBrowserWidth  (SR_SCREEN_WIDTH + 10)
 
 @interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureViewDelegate>
 
@@ -31,24 +31,28 @@
 
 @property (nonatomic, strong) SRPictureView *currentPictureView;
 
+@property (nonatomic, weak) id<SRPictureBrowserDelegate> delegate;
+
 @end
 
 @implementation SRPictureBrowser
 
-#pragma mark - Initial
-
-+ (instancetype)sr_pictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex {
++ (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate {
     
-    return [[self alloc] initWithModels:pictureModels currentIndex:currentIndex];
+    SRPictureBrowser *pictureBrowser = [[self alloc] initWithModels:pictureModels currentIndex:currentIndex delegate:delegate];
+    [pictureBrowser show];
 }
 
-- (id)initWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)index {
+#pragma mark - Initialize
+
+- (id)initWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)index delegate:(id<SRPictureBrowserDelegate>)delegate {
     
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         self.backgroundColor = [UIColor blackColor];
         
         _pictureModels = pictureModels;
         _currentIndex = index;
+        _delegate = delegate;
         
         for (SRPictureModel *picModel in _pictureModels) {
             if (picModel.index == _currentIndex) {
@@ -162,9 +166,9 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     
     if (!error) {
-        NSLog(@"Save Image Success");
+        NSLog(@"Save Image Success!");
     } else {
-        NSLog(@"Save Image Failure");
+        NSLog(@"Save Image Failure!");
     }
 }
 
@@ -174,6 +178,10 @@
     
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    if ([self.delegate respondsToSelector:@selector(pictureBrowserDidShow:)]) {
+        [self.delegate pictureBrowserDidShow:self];
+    }
 }
 
 - (void)dismiss {
@@ -185,6 +193,9 @@
     [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.currentPictureView.imageView.frame = self.currentPictureView.pictureModel.originPosition;
     } completion:^(BOOL finished) {
+        if ([self.delegate respondsToSelector:@selector(pictureBrowserDidDismiss)]) {
+            [self.delegate pictureBrowserDidDismiss];
+        }
         [self removeFromSuperview];
     }];
     
@@ -194,19 +205,21 @@
 - (void)updateCurrentPictureView {
     
     NSArray *cells = [self.collectionView visibleCells];
-    if (cells.count != 0) {
-        SRPictureCell *cell = [cells objectAtIndex:0];
-        if (self.currentPictureView != cell.pictureView) {
-            self.currentPictureView = cell.pictureView;
-            if (self.currentIndex + 1 < self.pictureModels.count) {
-                SRPictureModel *nextModel = [self.pictureModels objectAtIndex:self.currentIndex + 1];
-                [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:nextModel.picURLString]]];
-            }
-            if (self.currentIndex - 1 >= 0) {
-                SRPictureModel *preModel = [self.pictureModels objectAtIndex:self.currentIndex - 1];
-                [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:preModel.picURLString]]];
-            }
-        }
+    if (cells.count == 0) {
+        return;
+    }
+    SRPictureCell *cell = [cells objectAtIndex:0];
+    if (self.currentPictureView == cell.pictureView) {
+        return;
+    }
+    self.currentPictureView = cell.pictureView;
+    if (self.currentIndex + 1 < self.pictureModels.count) {
+        SRPictureModel *nextModel = [self.pictureModels objectAtIndex:self.currentIndex + 1];
+        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:nextModel.picURLString]]];
+    }
+    if (self.currentIndex - 1 >= 0) {
+        SRPictureModel *preModel = [self.pictureModels objectAtIndex:self.currentIndex - 1];
+        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:preModel.picURLString]]];
     }
 }
 

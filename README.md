@@ -31,8 +31,7 @@ for (NSInteger i = 0; i < 9; i ++) {
                                                                                   index:i];
     [imageBrowserModels addObject:imageBrowserModel];
 }
-SRPictureBrowser *pictureBrowser = [SRPictureBrowser sr_pictureBrowserWithModels:imageBrowserModels currentIndex:tapedImageView.tag];
-[pictureBrowser show];
+[SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:tapedImageView.tag delegate:self];
 ````
 See the demo for more information.
 

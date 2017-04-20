@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "SRPictureBrowser.h"
 
-@interface ViewController ()
+@interface ViewController () <SRPictureBrowserDelegate>
 
 @property (nonatomic, strong) NSArray *picURLStrings;
 @property (nonatomic, strong) NSMutableArray *imageViewFrames;
@@ -91,8 +91,17 @@
                                                                                       index:i];
         [imageBrowserModels addObject:imageBrowserModel];
     }
-    SRPictureBrowser *pictureBrowser = [SRPictureBrowser sr_pictureBrowserWithModels:imageBrowserModels currentIndex:tapedImageView.tag];
-    [pictureBrowser show];
+    [SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:tapedImageView.tag delegate:self];
+}
+
+- (void)pictureBrowserDidShow:(SRPictureBrowser *)pictureBrowser {
+    
+    NSLog(@"%s", __func__);
+}
+
+- (void)pictureBrowserDidDismiss {
+    
+    NSLog(@"%s", __func__);
 }
 
 @end
