@@ -6,7 +6,7 @@
 * blurring the current view background.
 * Long press the image to show action sheet.
 
-## Show
+## Screenshots
 
 ![image](./show.gif)
 ![image](./show.png)
@@ -34,5 +34,3 @@ for (NSInteger i = 0; i < 9; i ++) {
 [SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:tapedImageView.tag delegate:self];
 ````
 See the demo for more information.
-
-**Have Fun.**
