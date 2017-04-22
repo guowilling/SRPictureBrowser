@@ -20,12 +20,12 @@
 @property (nonatomic, assign, getter=isFirstShow) BOOL firstShow;
 
 /**
- Create a model of picture information.
+ Creates and returns a model of picture information.
 
- @param picURLString        URL of the picture.
- @param containerView       Super view of the picture view.
- @param positionInContainer Picture view's position in its super view.
- @param index This picture  index in all pictures.
+ @param picURLString        The URL string of the picture.
+ @param containerView       The super view of the picture view.
+ @param positionInContainer The picture view's position in its super view.
+ @param index               The index of this picture in all pictures.
  @return A SRPictureModel object.
  */
 + (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString

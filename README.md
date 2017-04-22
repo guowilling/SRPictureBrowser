@@ -19,6 +19,33 @@
 ### Manual
 > Drag the **SRPictureBrowser** folder to the project.(Note: if the project has already import SDWebImage, you should remove it which in the SRPictureBrowser folder)
 
+## APIs
+
+````objc
+/**
+ Displays a SRPictureBrowser object with pictureModels, currentIndex and delegate.
+
+ @param pictureModels The models which contains SRPictureModel.
+ @param currentIndex  The index of model which will show firstly.
+ @param delegate      The delegate of this object.
+ */
++ (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate;
+
+/**
+ Creates and returns a model of picture information.
+
+ @param picURLString        The URL string of the picture.
+ @param containerView       The super view of the picture view.
+ @param positionInContainer The picture view's position in its super view.
+ @param index               The index of this picture in all pictures.
+ @return A SRPictureModel object.
+ */
++ (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString
+                                  containerView:(UIView *)containerView
+                            positionInContainer:(CGRect)positionInContainer
+                                          index:(NSInteger)index;
+````
+
 ## Usage
 
 ````objc
