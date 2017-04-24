@@ -5,6 +5,9 @@
 //  Created by Willing Guo on 16/12/24.
 //  Copyright © 2016年 SR. All rights reserved.
 //
+//  GitHub: https://github.com/guowilling/SRPictureBrowser
+//  If you have any questions, submit an issue or email me. <guowilling90@gmail.com>
+//
 
 #import <UIKit/UIKit.h>
 #import "SRPictureModel.h"

@@ -1,5 +1,7 @@
 # SRPictureBrowser
 
+A concise and elegant easy-to-use picture browser.
+
 ## Features
 
 * Loading image with animation.
@@ -8,8 +10,8 @@
 
 ## Screenshots
 
-![image](./show.gif)
-![image](./show.png)
+![image](./screenshot.GIF)
+![image](./screenshot.png)
 
 ## Installation
 
@@ -19,7 +21,7 @@
 ### Manual
 > Drag the **SRPictureBrowser** folder to the project.(Note: if the project has already import SDWebImage, you should remove it which in the SRPictureBrowser folder)
 
-## APIs
+## Usage
 
 ````objc
 /**
@@ -46,8 +48,6 @@
                                           index:(NSInteger)index;
 ````
 
-## Usage
-
 ````objc
 UIImageView *tapedImageView = (UIImageView *)tapGestureRecognizer.view;
 NSMutableArray *imageBrowserModels = [[NSMutableArray alloc] init];
@@ -60,4 +60,5 @@ for (NSInteger i = 0; i < 9; i ++) {
 }
 [SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:tapedImageView.tag delegate:self];
 ````
-See the demo for more information.
+
+See the demo for more contents.  
