@@ -1,13 +1,13 @@
 # SRPictureBrowser
 
 A concise and elegant picture browser, easy-to-use and easy-to-extend.
-
+Load picture animation
 ## Screenshots
 
 ![image](./screenshot1.jpg)
 ![image](./screenshot2.jpg)
 
-## Usage
+## APIs
 
 ````objc
 /**
@@ -34,6 +34,8 @@ A concise and elegant picture browser, easy-to-use and easy-to-extend.
                                           index:(NSInteger)index;
 ````
 
+## Usage
+
 ````objc
 UIImageView *tapedImageView = (UIImageView *)tapGestureRecognizer.view;
 NSMutableArray *imageBrowserModels = [[NSMutableArray alloc] init];
@@ -46,9 +48,3 @@ for (NSInteger i = 0; i < self.picURLStrings.count; i ++) {
 }
 [SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:tapedImageView.tag delegate:self];
 ````
-
-## More
-
-Author: [guowilling](https://github.com/guowilling)  
-Email: <guowilling90@gmail.com>   
-If you have any questions, submit an issue or email me.
