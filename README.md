@@ -1,25 +1,11 @@
 # SRPictureBrowser
 
-A concise and elegant easy-to-use picture browser.
-
-## Features
-
-* Loading image with animation.
-* blurring the current view background.
-* Long press the image to show action sheet.
+A concise and elegant picture browser, easy-to-use and easy-to-extend.
 
 ## Screenshots
 
-![image](./screenshot.GIF)
-![image](./screenshot.png)
-
-## Installation
-
-### CocoaPods
-> Add **pod 'SRPictureBrowser'** to the Podfile, then run **pod install** in the terminal.
-
-### Manual
-> Drag the **SRPictureBrowser** folder to the project.(Note: if the project has already import SDWebImage, you should remove it which in the SRPictureBrowser folder)
+![image](./screenshot1.jpg)
+![image](./screenshot2.jpg)
 
 ## Usage
 
@@ -51,7 +37,7 @@ A concise and elegant easy-to-use picture browser.
 ````objc
 UIImageView *tapedImageView = (UIImageView *)tapGestureRecognizer.view;
 NSMutableArray *imageBrowserModels = [[NSMutableArray alloc] init];
-for (NSInteger i = 0; i < 9; i ++) {
+for (NSInteger i = 0; i < self.picURLStrings.count; i ++) {
     SRPictureModel *imageBrowserModel = [SRPictureModel sr_pictureModelWithPicURLString:self.picURLStrings[i]
                                                                           containerView:tapedImageView.superview
                                                                     positionInContainer:[self.imageViewFrames[i] CGRectValue]
@@ -61,4 +47,8 @@ for (NSInteger i = 0; i < 9; i ++) {
 [SRPictureBrowser sr_showPictureBrowserWithModels:imageBrowserModels currentIndex:tapedImageView.tag delegate:self];
 ````
 
-See the demo for more contents.  
+## More
+
+Author: [guowilling](https://github.com/guowilling)  
+Email: <guowilling90@gmail.com>   
+If you have any questions, submit an issue or email me.

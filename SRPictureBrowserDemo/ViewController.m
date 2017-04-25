@@ -18,6 +18,11 @@
 
 @implementation ViewController
 
+- (BOOL)prefersStatusBarHidden {
+    
+    return YES;
+}
+
 - (NSMutableArray *)imageViewFrames {
     
     if (!_imageViewFrames) {
