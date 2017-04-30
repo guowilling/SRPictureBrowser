@@ -1,21 +1,22 @@
 # SRPictureBrowser
 
-A concise and elegant picture browser, easy-to-use and easy-to-extend.
-Load picture animation
+A concise easy-to-use and easy-to-extend picture browser.
+
 ## Screenshots
 
-![image](./screenshot1.jpg)
-![image](./screenshot2.jpg)
+![image](./screenshots1.png) ![image](./screenshots2.png)
 
-## APIs
+![image](./screenshots3.png) ![image](./screenshots4.png)
+
+## Usage
 
 ````objc
 /**
- Displays a SRPictureBrowser object with pictureModels, currentIndex and delegate.
+ Displays a picture browser with pictureModels, currentIndex and delegate.
 
  @param pictureModels The models which contains SRPictureModel.
  @param currentIndex  The index of model which will show firstly.
- @param delegate      The delegate of this object.
+ @param delegate      The receiver’s delegate object.
  */
 + (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate;
 
@@ -26,15 +27,10 @@ Load picture animation
  @param containerView       The super view of the picture view.
  @param positionInContainer The picture view's position in its super view.
  @param index               The index of this picture in all pictures.
- @return A SRPictureModel object.
+ @return A picture model.
  */
-+ (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString
-                                  containerView:(UIView *)containerView
-                            positionInContainer:(CGRect)positionInContainer
-                                          index:(NSInteger)index;
++ (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString containerView:(UIView *)containerView positionInContainer:(CGRect)positionInContainer index:(NSInteger)index;
 ````
-
-## Usage
 
 ````objc
 UIImageView *tapedImageView = (UIImageView *)tapGestureRecognizer.view;

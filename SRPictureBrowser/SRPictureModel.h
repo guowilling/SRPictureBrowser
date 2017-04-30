@@ -26,11 +26,8 @@
  @param containerView       The super view of the picture view.
  @param positionInContainer The picture view's position in its super view.
  @param index               The index of this picture in all pictures.
- @return A SRPictureModel object.
+ @return A picture model.
  */
-+ (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString
-                                  containerView:(UIView *)containerView
-                            positionInContainer:(CGRect)positionInContainer
-                                          index:(NSInteger)index;
++ (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString containerView:(UIView *)containerView positionInContainer:(CGRect)positionInContainer index:(NSInteger)index;
 
 @end

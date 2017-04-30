@@ -22,11 +22,11 @@
 @interface SRPictureBrowser : UIView
 
 /**
- Displays a SRPictureBrowser object with pictureModels, currentIndex and delegate.
+ Displays a picture browser with pictureModels, currentIndex and delegate.
 
  @param pictureModels The models which contains SRPictureModel.
  @param currentIndex  The index of model which will show firstly.
- @param delegate      The delegate of this object.
+ @param delegate      The receiver’s delegate object.
  */
 + (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate;
 

@@ -32,7 +32,6 @@
 		68E825B81E11196E002FB39B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E825B71E11196E002FB39B /* ViewController.m */; };
 		68E825BB1E11196E002FB39B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68E825B91E11196E002FB39B /* Main.storyboard */; };
 		68E825BD1E11196E002FB39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68E825BC1E11196E002FB39B /* Assets.xcassets */; };
-		68E825C01E11196E002FB39B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68E825BE1E11196E002FB39B /* LaunchScreen.storyboard */; };
 		68E8262D1E111A45002FB39B /* SRPictureBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E826101E111A45002FB39B /* SRPictureBrowser.m */; };
 		68E8262E1E111A45002FB39B /* SRPictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E826121E111A45002FB39B /* SRPictureCell.m */; };
 		68E8262F1E111A45002FB39B /* SRPictureIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E826141E111A45002FB39B /* SRPictureIndicator.m */; };
@@ -47,6 +46,7 @@
 		68E826421E111AF8002FB39B /* coldplay07.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E826391E111AF8002FB39B /* coldplay07.jpg */; };
 		68E826431E111AF8002FB39B /* coldplay08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E8263A1E111AF8002FB39B /* coldplay08.jpg */; };
 		68E826441E111AF8002FB39B /* coldplay09.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E8263B1E111AF8002FB39B /* coldplay09.jpg */; };
+		6EBF581E1EB1165900B2B986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF581D1EB1165900B2B986 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,7 +100,6 @@
 		68E825B71E11196E002FB39B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		68E825BA1E11196E002FB39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		68E825BC1E11196E002FB39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		68E825BF1E11196E002FB39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68E825C11E11196E002FB39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68E8260F1E111A45002FB39B /* SRPictureBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureBrowser.h; sourceTree = "<group>"; };
 		68E826101E111A45002FB39B /* SRPictureBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureBrowser.m; sourceTree = "<group>"; };
@@ -122,6 +121,7 @@
 		68E826391E111AF8002FB39B /* coldplay07.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay07.jpg; sourceTree = "<group>"; };
 		68E8263A1E111AF8002FB39B /* coldplay08.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay08.jpg; sourceTree = "<group>"; };
 		68E8263B1E111AF8002FB39B /* coldplay09.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay09.jpg; sourceTree = "<group>"; };
+		6EBF581D1EB1165900B2B986 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,8 +225,8 @@
 				68E825B31E11196E002FB39B /* AppDelegate.h */,
 				68E825B41E11196E002FB39B /* AppDelegate.m */,
 				68E825B91E11196E002FB39B /* Main.storyboard */,
+				6EBF581D1EB1165900B2B986 /* LaunchScreen.storyboard */,
 				68E825BC1E11196E002FB39B /* Assets.xcassets */,
-				68E825BE1E11196E002FB39B /* LaunchScreen.storyboard */,
 				68E825C11E11196E002FB39B /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -332,12 +332,12 @@
 				68E8263D1E111AF8002FB39B /* coldplay02.jpg in Resources */,
 				68E826431E111AF8002FB39B /* coldplay08.jpg in Resources */,
 				68E826411E111AF8002FB39B /* coldplay06.jpg in Resources */,
-				68E825C01E11196E002FB39B /* LaunchScreen.storyboard in Resources */,
 				68E826401E111AF8002FB39B /* coldplay05.jpg in Resources */,
 				68E825BD1E11196E002FB39B /* Assets.xcassets in Resources */,
 				68E8263C1E111AF8002FB39B /* coldplay01.jpg in Resources */,
 				68E8263E1E111AF8002FB39B /* coldplay03.jpg in Resources */,
 				68E825BB1E11196E002FB39B /* Main.storyboard in Resources */,
+				6EBF581E1EB1165900B2B986 /* LaunchScreen.storyboard in Resources */,
 				68E826441E111AF8002FB39B /* coldplay09.jpg in Resources */,
 				68E8263F1E111AF8002FB39B /* coldplay04.jpg in Resources */,
 			);
@@ -390,14 +390,6 @@
 				68E825BA1E11196E002FB39B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		68E825BE1E11196E002FB39B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				68E825BF1E11196E002FB39B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

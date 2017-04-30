@@ -45,13 +45,13 @@
 
 #pragma mark - Initialize
 
-- (id)initWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)index delegate:(id<SRPictureBrowserDelegate>)delegate {
+- (id)initWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate {
     
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         self.backgroundColor = [UIColor blackColor];
         
         _pictureModels = pictureModels;
-        _currentIndex = index;
+        _currentIndex = currentIndex;
         _delegate = delegate;
         
         for (SRPictureModel *picModel in _pictureModels) {
@@ -73,6 +73,7 @@
     [self addSubview:({
         _screenBlurImageView = [[UIImageView alloc] initWithFrame:SR_SCREEN_BOUNDS];
         _screenBlurImageView.image = [screenImage applyBlurWithRadius:20 tintColor:SR_RGBA(0, 0, 0, 0.5) saturationDeltaFactor:1.5 maskImage:nil];
+        _screenBlurImageView.hidden = YES;
         _screenBlurImageView;
     })];
     

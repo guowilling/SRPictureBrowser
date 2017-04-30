@@ -17,11 +17,8 @@
 
 @implementation SRPictureModel
 
-+ (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString
-                                  containerView:(UIView *)containerView
-                            positionInContainer:(CGRect)positionInContainer
-                                          index:(NSInteger)index
-{
++ (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString containerView:(UIView *)containerView positionInContainer:(CGRect)positionInContainer index:(NSInteger)index {
+    
     SRPictureModel *pictureModel = [[SRPictureModel alloc] init];
     pictureModel.picURLString = picURLString;
     
