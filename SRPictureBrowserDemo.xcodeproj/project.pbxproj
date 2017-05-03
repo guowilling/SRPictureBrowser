@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		68A0ADAB1E53F2DA00A8BCEF /* UIImage+SRImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A0AD9A1E53F2DA00A8BCEF /* UIImage+SRImageEffects.m */; };
 		68A0ADD81E53F78A00A8BCEF /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A0ADB11E53F78A00A8BCEF /* MKAnnotationView+WebCache.m */; };
 		68A0ADD91E53F78A00A8BCEF /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A0ADB31E53F78A00A8BCEF /* NSData+ImageContentType.m */; };
 		68A0ADDA1E53F78A00A8BCEF /* NSImage+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A0ADB51E53F78A00A8BCEF /* NSImage+WebCache.m */; };
@@ -50,8 +49,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		68A0AD991E53F2DA00A8BCEF /* UIImage+SRImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SRImageEffects.h"; sourceTree = "<group>"; };
-		68A0AD9A1E53F2DA00A8BCEF /* UIImage+SRImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SRImageEffects.m"; sourceTree = "<group>"; };
 		68A0ADB01E53F78A00A8BCEF /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		68A0ADB11E53F78A00A8BCEF /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		68A0ADB21E53F78A00A8BCEF /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -246,8 +243,6 @@
 				68E826131E111A45002FB39B /* SRPictureIndicator.h */,
 				68E826141E111A45002FB39B /* SRPictureIndicator.m */,
 				68E826151E111A45002FB39B /* SRPictureMacro.h */,
-				68A0AD991E53F2DA00A8BCEF /* UIImage+SRImageEffects.h */,
-				68A0AD9A1E53F2DA00A8BCEF /* UIImage+SRImageEffects.m */,
 				68A0ADAC1E53F78A00A8BCEF /* SDWebImage */,
 			);
 			path = SRPictureBrowser;
@@ -295,7 +290,7 @@
 		68E825A51E11196E002FB39B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = SR;
 				TargetAttributes = {
 					68E825AC1E11196E002FB39B = {
@@ -357,7 +352,6 @@
 				68A0ADE31E53F78A00A8BCEF /* UIButton+WebCache.m in Sources */,
 				68A0ADE01E53F78A00A8BCEF /* SDWebImageDownloaderOperation.m in Sources */,
 				68E826311E111A45002FB39B /* SRPictureView.m in Sources */,
-				68A0ADAB1E53F2DA00A8BCEF /* UIImage+SRImageEffects.m in Sources */,
 				68A0ADDA1E53F78A00A8BCEF /* NSImage+WebCache.m in Sources */,
 				68E826301E111A45002FB39B /* SRPictureModel.m in Sources */,
 				68A0ADDE1E53F78A00A8BCEF /* SDWebImageDecoder.m in Sources */,
@@ -413,6 +407,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -460,6 +455,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

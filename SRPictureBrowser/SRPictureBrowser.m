@@ -13,7 +13,6 @@
 #import "SRPictureMacro.h"
 #import "SDWebImageManager.h"
 #import "SDWebImagePrefetcher.h"
-#import "UIImage+SRImageEffects.h"
 
 #define kPictureBrowserWidth  (SR_SCREEN_WIDTH + 10)
 
@@ -69,13 +68,6 @@
 - (void)setup {
     
     UIImage *screenImage = [self currentScreenImage];
-    
-    [self addSubview:({
-        _screenBlurImageView = [[UIImageView alloc] initWithFrame:SR_SCREEN_BOUNDS];
-        _screenBlurImageView.image = [screenImage applyBlurWithRadius:20 tintColor:SR_RGBA(0, 0, 0, 0.5) saturationDeltaFactor:1.5 maskImage:nil];
-        _screenBlurImageView.hidden = YES;
-        _screenBlurImageView;
-    })];
     
     [self addSubview:({
         _screenImageView = [[UIImageView alloc] initWithFrame:SR_SCREEN_BOUNDS];
