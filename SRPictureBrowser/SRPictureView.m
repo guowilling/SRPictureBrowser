@@ -8,13 +8,8 @@
 
 #import "SRPictureView.h"
 #import "SRPictureModel.h"
-#import "SRPictureMacro.h"
 #import "SRPictureIndicator.h"
-#import "SDWebImageManager.h"
-#import "UIImageView+WebCache.h"
-
-static CGFloat const kMaximumZoomScale = 3.0f;
-static CGFloat const kMinimumZoomScale = 1.0f;
+#import "SRPictureManager.h"
 
 @interface SRPictureView () <UIScrollViewDelegate>
 
@@ -31,9 +26,8 @@ static CGFloat const kMinimumZoomScale = 1.0f;
         self.delegate = self;
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
-        self.maximumZoomScale = kMaximumZoomScale;
-        self.minimumZoomScale = kMinimumZoomScale;
-        self.zoomScale = 1.0f;
+        self.maximumZoomScale = 2.0;
+        self.minimumZoomScale = 1.0;
         
         _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -66,32 +60,36 @@ static CGFloat const kMinimumZoomScale = 1.0f;
     _pictureModel = pictureModel;
     
     self.zoomScale = 1.0;
+    self.contentSize = pictureModel.destinationPosition.size;
     
     if (_pictureIndicator) {
         _pictureIndicator = [_pictureIndicator hide];
         _pictureIndicator = nil;
     }
-    [[SDWebImageManager sharedManager] cachedImageExistsForURL:[NSURL URLWithString:self.pictureModel.picURLString] completion:^(BOOL isInCache) {
-        if (isInCache) {
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.pictureModel.picURLString]];
-            if (self.pictureModel.isFirstShow) {
-                self.imageView.frame = self.pictureModel.originPosition;
-                [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
-                    self.imageView.frame = self.pictureModel.destinationPosition;
-                } completion:nil];
-            } else {
+    
+    UIImage *picture = [SRPictureManager pictureFromSandbox:self.pictureModel.picURLString];
+    if (picture) {
+        self.imageView.image = picture;
+        if (self.pictureModel.isFirstShow) {
+            self.imageView.frame = self.pictureModel.originPosition;
+            [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
                 self.imageView.frame = self.pictureModel.destinationPosition;
-            }
+            } completion:nil];
         } else {
-            self.imageView.image = nil;
             self.imageView.frame = self.pictureModel.destinationPosition;
-            _pictureIndicator = [SRPictureIndicator showInView:self];
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.pictureModel.picURLString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                _pictureIndicator = [_pictureIndicator hide];
-                _pictureIndicator = nil;
-            }];
         }
-    }];
+    } else {
+        self.imageView.image = nil;
+        self.imageView.frame = self.pictureModel.destinationPosition;
+        _pictureIndicator = [SRPictureIndicator showInView:self];
+        [SRPictureManager downloadPicture:self.pictureModel.picURLString success:^(UIImage *picture) {
+            _pictureIndicator = [_pictureIndicator hide];
+            _pictureIndicator = nil;
+            self.imageView.image = picture;
+        } failure:^(NSError *error) {
+            NSLog(@"downloadPicture error: %@", error);
+        }];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -148,11 +146,11 @@ static CGFloat const kMinimumZoomScale = 1.0f;
 - (void)handleDoubleTap:(UITapGestureRecognizer *)gestureRecognizer {
     
     if (gestureRecognizer.numberOfTapsRequired == 2) {
-        if (self.zoomScale == 1) {
-            CGRect zoomRect = [self zoomRectForScale:self.zoomScale * 2 withCenter:[gestureRecognizer locationInView:self]];
+        if (self.zoomScale > 1) {
+            CGRect zoomRect = [self zoomRectForScale:1.0 withCenter:[gestureRecognizer locationInView:self]];
             [self zoomToRect:zoomRect animated:YES];
         } else {
-            CGRect zoomRect = [self zoomRectForScale:kMinimumZoomScale withCenter:[gestureRecognizer locationInView:self]];
+            CGRect zoomRect = [self zoomRectForScale:2.0 withCenter:[gestureRecognizer locationInView:self]];
             [self zoomToRect:zoomRect animated:YES];
         }
     }

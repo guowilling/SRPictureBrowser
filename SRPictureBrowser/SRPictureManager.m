@@ -59,6 +59,17 @@ stringByAppendingPathComponent:NSStringFromClass([self class])]
     }] resume];
 }
 
++ (void)prefetchDownloadPicture:(NSString *)URLString {
+    
+    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:URLString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"dataTaskWithURL error: %@", error);
+            return;
+        }
+        [data writeToFile:SRPicturePath(URLString) atomically:YES];
+    }] resume];
+}
+
 + (void)clearCachedImages {
     
     NSFileManager *fileManager = [NSFileManager defaultManager];

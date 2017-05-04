@@ -7,13 +7,8 @@
 //
 
 #import "SRPictureBrowser.h"
-#import "SRPictureModel.h"
 #import "SRPictureCell.h"
 #import "SRPictureView.h"
-#import "SRPictureMacro.h"
-#import "SDWebImagePrefetcher.h"
-
-#define kPictureBrowserWidth  (SR_SCREEN_WIDTH + 10)
 
 @interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureViewDelegate>
 
@@ -63,24 +58,27 @@
     
     self.backgroundColor = [UIColor blackColor];
     
-    UIGraphicsBeginImageContextWithOptions([UIScreen mainScreen].bounds.size, YES, [UIScreen mainScreen].scale);
-    [[UIApplication sharedApplication].keyWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *currentScreenImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    
     [self addSubview:({
-        _screenImageView = [[UIImageView alloc] initWithFrame:SR_SCREEN_BOUNDS];
+        UIGraphicsBeginImageContextWithOptions([UIScreen mainScreen].bounds.size, YES, [UIScreen mainScreen].scale);
+        [[UIApplication sharedApplication].keyWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *currentScreenImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        _screenImageView = [[UIImageView alloc] initWithFrame:screenBounds];
         _screenImageView.image = currentScreenImage;
         _screenImageView.hidden = YES;
         _screenImageView;
     })];
     
     [self addSubview:({
+        CGFloat flowLayoutWidth = screenBounds.size.width + 10;
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.itemSize = CGSizeMake(kPictureBrowserWidth, SR_SCREEN_HEIGHT);
+        flowLayout.itemSize = CGSizeMake(flowLayoutWidth, screenBounds.size.height);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         flowLayout.minimumLineSpacing = 0.0f;
         flowLayout.sectionInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kPictureBrowserWidth, self.bounds.size.height) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, flowLayoutWidth, screenBounds.size.height) collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
@@ -88,12 +86,12 @@
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.pagingEnabled = YES;
         [_collectionView registerClass:[SRPictureCell class] forCellWithReuseIdentifier:pictureViewID];
-        [_collectionView setContentOffset:CGPointMake(self.currentIndex * kPictureBrowserWidth, 0.0f) animated:NO];
+        [_collectionView setContentOffset:CGPointMake(self.currentIndex * flowLayoutWidth, 0.0f) animated:NO];
         _collectionView;
     })];
     
     [self addSubview:({
-        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, SR_SCREEN_HEIGHT - 40 - 10, SR_SCREEN_WIDTH, 40)];
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, screenBounds.size.height - 40 - 10, screenBounds.size.width, 40)];
         _pageControl.numberOfPages = self.pictureModels.count;
         _pageControl.currentPage = self.currentIndex;
         _pageControl.userInteractionEnabled = NO;
@@ -151,7 +149,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
-    NSInteger index = scrollView.contentOffset.x / SR_SCREEN_WIDTH;
+    NSInteger index = scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
     self.currentIndex = index;
     self.pageControl.currentPage = index;
     
@@ -167,11 +165,11 @@
     
     if (self.currentIndex + 1 < self.pictureModels.count) {
         SRPictureModel *nextModel = [self.pictureModels objectAtIndex:self.currentIndex + 1];
-        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:nextModel.picURLString]]];
+        [SRPictureManager prefetchDownloadPicture:nextModel.picURLString];
     }
     if (self.currentIndex - 1 >= 0) {
         SRPictureModel *preModel = [self.pictureModels objectAtIndex:self.currentIndex - 1];
-        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:preModel.picURLString]]];
+        [SRPictureManager prefetchDownloadPicture:preModel.picURLString];
     }
 }
 
@@ -185,9 +183,9 @@
 - (void)pictureViewDidLongPress {
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                    cancelButtonTitle:@"取消"
+                                                    cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"保存图片", nil];
+                                                    otherButtonTitles:@"Save", nil];
     [actionSheet showInView:self];
 }
 
@@ -200,10 +198,8 @@
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     
-    if (!error) {
-        NSLog(@"Save Image Success!");
-    } else {
-        NSLog(@"Save Image Failure!");
+    if (error) {
+        NSLog(@"didFinishSavingWithError error: %@", error);
     }
 }
 

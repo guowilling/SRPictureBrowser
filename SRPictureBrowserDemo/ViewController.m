@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "SRPictureBrowser.h"
-#import "SRPictureManager.h"
 
 @interface ViewController () <SRPictureBrowserDelegate>
 
@@ -52,14 +51,8 @@
     
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor blackColor];
-    
-    self.title = @"SRPhotoBrowser";
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"CLEAR"
-                                                                              style:UIBarButtonItemStyleDone
-                                                                             target:[SRPictureManager class]
-                                                                             action:@selector(clearCachedImages)];
+    UIBarButtonItem *clearItem = [[UIBarButtonItem alloc] initWithTitle:@"CLEAR" style:UIBarButtonItemStyleDone target:self action:@selector(clearCachedImages)];
+    self.navigationItem.rightBarButtonItem = clearItem;
     
     UIView *container = [[UIView alloc] init];
     container.backgroundColor = [UIColor whiteColor];
@@ -90,6 +83,11 @@
             imageView;
         })];
     }
+}
+
+- (void)clearCachedImages {
+    
+    [SRPictureManager clearCachedImages];
 }
 
 - (void)imageTapAction:(UITapGestureRecognizer *)tapGestureRecognizer {

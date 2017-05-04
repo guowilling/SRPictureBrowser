@@ -9,7 +9,6 @@
 #import "SRPictureCell.h"
 #import "SRPictureModel.h"
 #import "SRPictureView.h"
-#import "SRPictureMacro.h"
 
 @implementation SRPictureCell
 
@@ -17,7 +16,7 @@
     
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
-        _pictureView = [[SRPictureView alloc] initWithFrame:SR_SCREEN_BOUNDS];
+        _pictureView = [[SRPictureView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         [self.contentView addSubview:_pictureView];
     }
     return self;

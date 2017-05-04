@@ -15,6 +15,8 @@
 
 + (void)downloadPicture:(NSString *)URLString success:(void (^)(UIImage *picture))success failure:(void (^)(NSError *error))failure;
 
++ (void)prefetchDownloadPicture:(NSString *)URLString;
+
 + (void)clearCachedImages;
     
 @end

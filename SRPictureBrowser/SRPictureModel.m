@@ -7,7 +7,6 @@
 //
 
 #import "SRPictureModel.h"
-#import "SRPictureMacro.h"
 
 @interface SRPictureModel ()
 
@@ -24,7 +23,7 @@
     if (containerView) {
         pictureModel.originPosition = [containerView convertRect:positionInContainer toView:[UIApplication sharedApplication].keyWindow];
     } else {
-        pictureModel.originPosition = CGRectMake(SR_SCREEN_WIDTH * 0.5, SR_SCREEN_HEIGHT * 0.5, 0, 0);
+        pictureModel.originPosition = CGRectMake([UIScreen mainScreen].bounds.size.width * 0.5, [UIScreen mainScreen].bounds.size.height * 0.5, 0, 0);
     }
     pictureModel.index = index;
     [self calculateDestinationPositionWithPictureModel:pictureModel];
@@ -33,14 +32,15 @@
 
 + (void)calculateDestinationPositionWithPictureModel:(SRPictureModel *)pictureModel {
     
-    CGFloat destinationPositionW = SR_SCREEN_WIDTH;
-    CGFloat destinationPositionH = pictureModel.originPosition.size.height * SR_SCREEN_WIDTH / pictureModel.originPosition.size.width;
-    if (destinationPositionH > SR_SCREEN_HEIGHT) {
-        destinationPositionW = pictureModel.originPosition.size.width;
-        destinationPositionH = pictureModel.originPosition.size.height;
-    }
     CGFloat destinationPositionX = 0;
-    CGFloat destinationPositionY = (SR_SCREEN_HEIGHT - destinationPositionH) * 0.5;
+    CGFloat destinationPositionY = 0;
+    CGFloat destinationPositionW = [UIScreen mainScreen].bounds.size.width;
+    CGFloat destinationPositionH = destinationPositionW / pictureModel.originPosition.size.width * pictureModel.originPosition.size.height;
+    if (destinationPositionH > [UIScreen mainScreen].bounds.size.height) {
+        destinationPositionH = pictureModel.originPosition.size.height;
+    } else {
+        destinationPositionY = ([UIScreen mainScreen].bounds.size.height - destinationPositionH) * 0.5;
+    }
     pictureModel.destinationPosition = CGRectMake(destinationPositionX, destinationPositionY, destinationPositionW, destinationPositionH);
 }
 

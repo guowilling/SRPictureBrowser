@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SRPictureModel.h"
+#import "SRPictureManager.h"
 
 @class SRPictureBrowser;
 
