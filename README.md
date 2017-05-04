@@ -4,9 +4,9 @@ A concise easy-to-use and easy-to-extend picture browser.
 
 ## Screenshots
 
-![image](./screenshots1.png) ![image](./screenshots2.png)
+![image](./Screenshots/screenshots1.png) ![image](./Screenshots/screenshots2.png)
 
-![image](./screenshots3.png) ![image](./screenshots4.png)
+![image](./Screenshots/screenshots3.png) ![image](./Screenshots/screenshots4.png)
 
 ## Usage
 

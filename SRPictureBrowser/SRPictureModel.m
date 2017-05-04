@@ -7,6 +7,7 @@
 //
 
 #import "SRPictureModel.h"
+#import "SRPictureManager.h"
 
 @interface SRPictureModel ()
 
@@ -26,18 +27,24 @@
         pictureModel.originPosition = CGRectMake([UIScreen mainScreen].bounds.size.width * 0.5, [UIScreen mainScreen].bounds.size.height * 0.5, 0, 0);
     }
     pictureModel.index = index;
-    [self calculateDestinationPositionWithPictureModel:pictureModel];
+    [self calculateDestinationPositionWithPictureModel:pictureModel picture:nil];
     return pictureModel;
 }
 
-+ (void)calculateDestinationPositionWithPictureModel:(SRPictureModel *)pictureModel {
++ (void)calculateDestinationPositionWithPictureModel:(SRPictureModel *)pictureModel picture:(UIImage *)picture {
     
+    if (!picture) {
+        picture = [SRPictureManager pictureFromSandbox:pictureModel.picURLString];
+    }
+    if (!picture) {
+        return;
+    }
     CGFloat destinationPositionX = 0;
     CGFloat destinationPositionY = 0;
     CGFloat destinationPositionW = [UIScreen mainScreen].bounds.size.width;
-    CGFloat destinationPositionH = destinationPositionW / pictureModel.originPosition.size.width * pictureModel.originPosition.size.height;
+    CGFloat destinationPositionH = destinationPositionW / picture.size.width * picture.size.height;
     if (destinationPositionH > [UIScreen mainScreen].bounds.size.height) {
-        destinationPositionH = pictureModel.originPosition.size.height;
+        destinationPositionH = picture.size.height;
     } else {
         destinationPositionY = ([UIScreen mainScreen].bounds.size.height - destinationPositionH) * 0.5;
     }

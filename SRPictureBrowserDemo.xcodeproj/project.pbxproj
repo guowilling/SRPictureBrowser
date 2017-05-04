@@ -117,7 +117,6 @@
 		68E825A41E11196E002FB39B = {
 			isa = PBXGroup;
 			children = (
-				68E825E31E111A45002FB39B /* SRPictureBrowser */,
 				68E825AF1E11196E002FB39B /* SRPictureBrowserDemo */,
 				68A23F101EBACB1000EF0DEC /* SRPictureBrowserDemoTests */,
 				68E825AE1E11196E002FB39B /* Products */,
@@ -137,6 +136,7 @@
 		68E825AF1E11196E002FB39B /* SRPictureBrowserDemo */ = {
 			isa = PBXGroup;
 			children = (
+				68E825E31E111A45002FB39B /* SRPictureBrowser */,
 				68E825B61E11196E002FB39B /* ViewController.h */,
 				68E825B71E11196E002FB39B /* ViewController.m */,
 				68E825B91E11196E002FB39B /* Main.storyboard */,
@@ -175,7 +175,8 @@
 				68A23F081EBA003000EF0DEC /* SRPictureManager.h */,
 				68A23F091EBA003000EF0DEC /* SRPictureManager.m */,
 			);
-			path = SRPictureBrowser;
+			name = SRPictureBrowser;
+			path = ../SRPictureBrowser;
 			sourceTree = "<group>";
 		};
 		68E826321E111AF8002FB39B /* coldplay */ = {

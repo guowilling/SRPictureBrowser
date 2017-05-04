@@ -137,8 +137,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     SRPictureCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:pictureViewID forIndexPath:indexPath];
-    cell.pictureModel = self.pictureModels[indexPath.row];
     cell.pictureView.pictureViewDelegate = self;
+    cell.pictureModel = self.pictureModels[indexPath.row];
     if (!_currentPictureView) {
         _currentPictureView = cell.pictureView;
     }
