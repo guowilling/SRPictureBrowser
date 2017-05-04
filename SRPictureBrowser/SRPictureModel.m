@@ -21,15 +21,12 @@
     
     SRPictureModel *pictureModel = [[SRPictureModel alloc] init];
     pictureModel.picURLString = picURLString;
-    
     if (containerView) {
-        pictureModel.originPosition = [containerView convertRect:positionInContainer
-                                                          toView:[UIApplication sharedApplication].keyWindow];
+        pictureModel.originPosition = [containerView convertRect:positionInContainer toView:[UIApplication sharedApplication].keyWindow];
     } else {
         pictureModel.originPosition = CGRectMake(SR_SCREEN_WIDTH * 0.5, SR_SCREEN_HEIGHT * 0.5, 0, 0);
     }
     pictureModel.index = index;
-    
     [self calculateDestinationPositionWithPictureModel:pictureModel];
     return pictureModel;
 }

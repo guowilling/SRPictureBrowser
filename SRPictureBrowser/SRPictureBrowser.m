@@ -11,26 +11,24 @@
 #import "SRPictureCell.h"
 #import "SRPictureView.h"
 #import "SRPictureMacro.h"
-#import "SDWebImageManager.h"
 #import "SDWebImagePrefetcher.h"
 
 #define kPictureBrowserWidth  (SR_SCREEN_WIDTH + 10)
 
 @interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureViewDelegate>
 
+@property (nonatomic, weak) id<SRPictureBrowserDelegate> delegate;
+
 @property (nonatomic, copy) NSArray *pictureModels;
+
+@property (nonatomic, strong) UIImageView *screenImageView;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIPageControl    *pageControl;
 
-@property (nonatomic, strong) UIImageView *screenImageView;
-@property (nonatomic, strong) UIImageView *screenBlurImageView;
-
-@property (nonatomic, assign) NSInteger currentIndex;
-
 @property (nonatomic, strong) SRPictureView *currentPictureView;
 
-@property (nonatomic, weak) id<SRPictureBrowserDelegate> delegate;
+@property (nonatomic, assign) NSInteger currentIndex;
 
 @end
 
@@ -47,19 +45,15 @@
 - (id)initWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate {
     
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
-        self.backgroundColor = [UIColor blackColor];
-        
         _pictureModels = pictureModels;
         _currentIndex = currentIndex;
         _delegate = delegate;
-        
         for (SRPictureModel *picModel in _pictureModels) {
             if (picModel.index == _currentIndex) {
                 picModel.firstShow = YES;
                 break;
             }
         }
-        
         [self setup];
     }
     return self;
@@ -67,11 +61,15 @@
 
 - (void)setup {
     
-    UIImage *screenImage = [self currentScreenImage];
+    self.backgroundColor = [UIColor blackColor];
     
+    UIGraphicsBeginImageContextWithOptions([UIScreen mainScreen].bounds.size, YES, [UIScreen mainScreen].scale);
+    [[UIApplication sharedApplication].keyWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *currentScreenImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     [self addSubview:({
         _screenImageView = [[UIImageView alloc] initWithFrame:SR_SCREEN_BOUNDS];
-        _screenImageView.image = screenImage;
+        _screenImageView.image = currentScreenImage;
         _screenImageView.hidden = YES;
         _screenImageView;
     })];
@@ -82,8 +80,7 @@
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         flowLayout.minimumLineSpacing = 0.0f;
         flowLayout.sectionInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kPictureBrowserWidth, self.bounds.size.height)
-                                             collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kPictureBrowserWidth, self.bounds.size.height) collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
@@ -102,6 +99,34 @@
         _pageControl.userInteractionEnabled = NO;
         _pageControl;
     })];
+}
+
+#pragma mark - Animation
+
+- (void)show {
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    if ([self.delegate respondsToSelector:@selector(pictureBrowserDidShow:)]) {
+        [self.delegate pictureBrowserDidShow:self];
+    }
+}
+
+- (void)dismiss {
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    _screenImageView.hidden = NO;
+    _pageControl.hidden = YES;
+    
+    self.currentPictureView.zoomScale = 1.0;
+    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.currentPictureView.imageView.frame = self.currentPictureView.pictureModel.originPosition;
+    } completion:^(BOOL finished) {
+        if ([self.delegate respondsToSelector:@selector(pictureBrowserDidDismiss)]) {
+            [self.delegate pictureBrowserDidDismiss];
+        }
+        [self removeFromSuperview];
+    }];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -130,7 +155,24 @@
     self.currentIndex = index;
     self.pageControl.currentPage = index;
     
-    [self updateCurrentPictureView];
+    NSArray *cells = [self.collectionView visibleCells];
+    if (cells.count == 0) {
+        return;
+    }
+    SRPictureCell *cell = [cells objectAtIndex:0];
+    if (self.currentPictureView == cell.pictureView) {
+        return;
+    }
+    self.currentPictureView = cell.pictureView;
+    
+    if (self.currentIndex + 1 < self.pictureModels.count) {
+        SRPictureModel *nextModel = [self.pictureModels objectAtIndex:self.currentIndex + 1];
+        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:nextModel.picURLString]]];
+    }
+    if (self.currentIndex - 1 >= 0) {
+        SRPictureModel *preModel = [self.pictureModels objectAtIndex:self.currentIndex - 1];
+        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:preModel.picURLString]]];
+    }
 }
 
 #pragma mark - SRPictureViewDelegate
@@ -163,66 +205,6 @@
     } else {
         NSLog(@"Save Image Failure!");
     }
-}
-
-#pragma mark - Assist Methods
-
-- (void)show {
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:self];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
-    if ([self.delegate respondsToSelector:@selector(pictureBrowserDidShow:)]) {
-        [self.delegate pictureBrowserDidShow:self];
-    }
-}
-
-- (void)dismiss {
-    
-    _screenImageView.hidden = NO;
-    
-    self.currentPictureView.zoomScale = 1.0;
-    
-    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.currentPictureView.imageView.frame = self.currentPictureView.pictureModel.originPosition;
-    } completion:^(BOOL finished) {
-        if ([self.delegate respondsToSelector:@selector(pictureBrowserDidDismiss)]) {
-            [self.delegate pictureBrowserDidDismiss];
-        }
-        [self removeFromSuperview];
-    }];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-}
-
-- (void)updateCurrentPictureView {
-    
-    NSArray *cells = [self.collectionView visibleCells];
-    if (cells.count == 0) {
-        return;
-    }
-    SRPictureCell *cell = [cells objectAtIndex:0];
-    if (self.currentPictureView == cell.pictureView) {
-        return;
-    }
-    self.currentPictureView = cell.pictureView;
-    if (self.currentIndex + 1 < self.pictureModels.count) {
-        SRPictureModel *nextModel = [self.pictureModels objectAtIndex:self.currentIndex + 1];
-        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:nextModel.picURLString]]];
-    }
-    if (self.currentIndex - 1 >= 0) {
-        SRPictureModel *preModel = [self.pictureModels objectAtIndex:self.currentIndex - 1];
-        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[[NSURL URLWithString:preModel.picURLString]]];
-    }
-}
-
-- (UIImage *)currentScreenImage {
-    
-    UIGraphicsBeginImageContextWithOptions([UIScreen mainScreen].bounds.size, YES, [UIScreen mainScreen].scale);
-    [[UIApplication sharedApplication].keyWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *currentScreenImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return currentScreenImage;
 }
 
 @end

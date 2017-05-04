@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SRPictureBrowser.h"
+#import "SRPictureManager.h"
 
 @interface ViewController () <SRPictureBrowserDelegate>
 
@@ -52,7 +53,13 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
+    
     self.title = @"SRPhotoBrowser";
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"CLEAR"
+                                                                              style:UIBarButtonItemStyleDone
+                                                                             target:[SRPictureManager class]
+                                                                             action:@selector(clearCachedImages)];
     
     UIView *container = [[UIView alloc] init];
     container.backgroundColor = [UIColor whiteColor];

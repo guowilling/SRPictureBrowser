@@ -56,7 +56,10 @@ static NSString * const strokeAnimationKey   = @"strokeAnimation";
         _progressLayer.lineWidth = 2.0;
         [self.layer addSublayer:_progressLayer];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidBecomeActive)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
     }
     return self;
 }
