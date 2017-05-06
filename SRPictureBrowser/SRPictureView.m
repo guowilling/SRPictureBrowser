@@ -60,7 +60,6 @@
     _pictureModel = pictureModel;
     
     self.zoomScale = 1.0;
-    self.contentSize = pictureModel.destinationPosition.size;
     
     if (_pictureIndicator) {
         _pictureIndicator = [_pictureIndicator hide];
@@ -75,6 +74,7 @@
         self.imageView.image = picture;
         if (self.pictureModel.isFirstShow) {
             self.imageView.frame = self.pictureModel.originPosition;
+            self.contentSize = pictureModel.destinationPosition.size;
             [UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:0.0 options:0 animations:^{
                 self.imageView.frame = self.pictureModel.destinationPosition;
             } completion:nil];
@@ -90,6 +90,7 @@
             [SRPictureModel calculateDestinationPositionWithPictureModel:self.pictureModel picture:picture];
             self.imageView.image = picture;
             self.imageView.frame = self.pictureModel.destinationPosition;
+            self.contentSize = pictureModel.destinationPosition.size;
         } failure:^(NSError *error) {
             NSLog(@"downloadPicture error: %@", error);
         }];
