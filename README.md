@@ -1,6 +1,6 @@
 # SRPictureBrowser
 
-A concise easy-to-use and easy-to-extend picture browser.
+A light-weight and easy-to-extend picture browser. Not rely on any third-party libraries to download and cache picture.
 
 ## Screenshots
 
