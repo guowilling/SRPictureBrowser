@@ -2,13 +2,11 @@
 //  SRPictureBrowser.h
 //  SRPhotoBrowser
 //
-//  Created by Willing Guo on 16/12/24.
+//  Created by https://github.com/guowilling on 16/12/24.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "SRPictureModel.h"
-#import "SRPictureManager.h"
 
 @class SRPictureBrowser;
 

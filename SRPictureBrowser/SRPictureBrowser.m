@@ -2,13 +2,15 @@
 //  SRPictureBrowser.m
 //  SRPhotoBrowser
 //
-//  Created by Willing Guo on 16/12/24.
+//  Created by https://github.com/guowilling on 16/12/24.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
 #import "SRPictureBrowser.h"
 #import "SRPictureCell.h"
 #import "SRPictureView.h"
+#import "SRPictureModel.h"
+#import "SRPictureManager.h"
 
 @interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureViewDelegate>
 

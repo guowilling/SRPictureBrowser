@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SRPictureBrowser.h"
+#import "SRPictureModel.h"
 
 @interface ViewController () <SRPictureBrowserDelegate>
 
@@ -32,17 +33,17 @@
 }
 
 - (NSArray *)picURLStrings {
-    
+
     if (!_picURLStrings) {
-        _picURLStrings = @[@"http://p1.bqimg.com/4851/112faa5cf03658c9.jpg",
-                           @"http://p1.bpimg.com/4851/4c2e56725b2e6fcb.jpg",
-                           @"http://p1.bqimg.com/4851/afddcbe86ba32096.jpg",
-                           @"http://p1.bqimg.com/4851/c0138afeb25153f7.jpg",
-                           @"http://p1.bqimg.com/4851/80cb0ce1f27d15bc.jpg",
-                           @"http://p1.bqimg.com/4851/7625ce564dfa0e6f.jpg",
-                           @"http://p1.bqimg.com/4851/962e137e74c15d37.jpg",
-                           @"http://p1.bqimg.com/4851/5ffe412ee4a35098.jpg",
-                           @"http://p1.bqimg.com/4851/5f1b7d156349843f.jpg"];
+        _picURLStrings = @[@"http://i1.piimg.com/593517/dcd2b32545e44ca0.jpg",
+                           @"http://i1.piimg.com/593517/200c2de8ea0ce7aa.jpg",
+                           @"http://i1.piimg.com/593517/31386bf8c82df9b4.jpg",
+                           @"http://i1.piimg.com/593517/91e3e497b0317894.jpg",
+                           @"http://i1.piimg.com/593517/182ef6ae1dbc9387.jpg",
+                           @"http://i1.piimg.com/593517/544edc9a6aedb6be.jpg",
+                           @"http://i1.piimg.com/593517/50385447a659214a.jpg",
+                           @"http://i1.piimg.com/593517/c584637b3f869b53.jpg",
+                           @"http://i1.piimg.com/593517/11035002ebf2781f.jpg"];
     }
     return _picURLStrings;
 }
@@ -50,9 +51,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    UIBarButtonItem *clearItem = [[UIBarButtonItem alloc] initWithTitle:@"CLEAR" style:UIBarButtonItemStyleDone target:self action:@selector(clearCachedImages)];
-    self.navigationItem.rightBarButtonItem = clearItem;
     
     UIView *container = [[UIView alloc] init];
     container.backgroundColor = [UIColor whiteColor];
@@ -74,7 +72,7 @@
             CGFloat imageViewY = margin + row * (margin + imageViewWH);
             imageView.frame = CGRectMake(imageViewX, imageViewY, imageViewWH, imageViewWH);
             [self.imageViewFrames addObject:[NSValue valueWithCGRect:imageView.frame]];
-            imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"coldplay%02d.jpg", i + 1]];
+            imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"GameofThrones%d", i + 1]];
             imageView.userInteractionEnabled = YES;
             UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapAction:)];
             [imageView addGestureRecognizer:tapGestureRecognizer];
@@ -83,11 +81,6 @@
             imageView;
         })];
     }
-}
-
-- (void)clearCachedImages {
-    
-    [SRPictureManager clearCachedImages];
 }
 
 - (void)imageTapAction:(UITapGestureRecognizer *)tapGestureRecognizer {

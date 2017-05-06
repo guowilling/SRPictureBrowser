@@ -19,15 +19,6 @@
 		68E8262F1E111A45002FB39B /* SRPictureIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E826141E111A45002FB39B /* SRPictureIndicator.m */; };
 		68E826301E111A45002FB39B /* SRPictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E826171E111A45002FB39B /* SRPictureModel.m */; };
 		68E826311E111A45002FB39B /* SRPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E826191E111A45002FB39B /* SRPictureView.m */; };
-		68E8263C1E111AF8002FB39B /* coldplay01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E826331E111AF8002FB39B /* coldplay01.jpg */; };
-		68E8263D1E111AF8002FB39B /* coldplay02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E826341E111AF8002FB39B /* coldplay02.jpg */; };
-		68E8263E1E111AF8002FB39B /* coldplay03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E826351E111AF8002FB39B /* coldplay03.jpg */; };
-		68E8263F1E111AF8002FB39B /* coldplay04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E826361E111AF8002FB39B /* coldplay04.jpg */; };
-		68E826401E111AF8002FB39B /* coldplay05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E826371E111AF8002FB39B /* coldplay05.jpg */; };
-		68E826411E111AF8002FB39B /* coldplay06.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E826381E111AF8002FB39B /* coldplay06.jpg */; };
-		68E826421E111AF8002FB39B /* coldplay07.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E826391E111AF8002FB39B /* coldplay07.jpg */; };
-		68E826431E111AF8002FB39B /* coldplay08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E8263A1E111AF8002FB39B /* coldplay08.jpg */; };
-		68E826441E111AF8002FB39B /* coldplay09.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68E8263B1E111AF8002FB39B /* coldplay09.jpg */; };
 		6EBF581E1EB1165900B2B986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EBF581D1EB1165900B2B986 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -67,15 +58,6 @@
 		68E826171E111A45002FB39B /* SRPictureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureModel.m; sourceTree = "<group>"; };
 		68E826181E111A45002FB39B /* SRPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureView.h; sourceTree = "<group>"; };
 		68E826191E111A45002FB39B /* SRPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureView.m; sourceTree = "<group>"; };
-		68E826331E111AF8002FB39B /* coldplay01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay01.jpg; sourceTree = "<group>"; };
-		68E826341E111AF8002FB39B /* coldplay02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay02.jpg; sourceTree = "<group>"; };
-		68E826351E111AF8002FB39B /* coldplay03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay03.jpg; sourceTree = "<group>"; };
-		68E826361E111AF8002FB39B /* coldplay04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay04.jpg; sourceTree = "<group>"; };
-		68E826371E111AF8002FB39B /* coldplay05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay05.jpg; sourceTree = "<group>"; };
-		68E826381E111AF8002FB39B /* coldplay06.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay06.jpg; sourceTree = "<group>"; };
-		68E826391E111AF8002FB39B /* coldplay07.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay07.jpg; sourceTree = "<group>"; };
-		68E8263A1E111AF8002FB39B /* coldplay08.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay08.jpg; sourceTree = "<group>"; };
-		68E8263B1E111AF8002FB39B /* coldplay09.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coldplay09.jpg; sourceTree = "<group>"; };
 		6EBF581D1EB1165900B2B986 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,7 +130,6 @@
 		68E825B01E11196E002FB39B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				68E826321E111AF8002FB39B /* coldplay */,
 				68E825B11E11196E002FB39B /* main.m */,
 				68E825B31E11196E002FB39B /* AppDelegate.h */,
 				68E825B41E11196E002FB39B /* AppDelegate.m */,
@@ -177,22 +158,6 @@
 			);
 			name = SRPictureBrowser;
 			path = ../SRPictureBrowser;
-			sourceTree = "<group>";
-		};
-		68E826321E111AF8002FB39B /* coldplay */ = {
-			isa = PBXGroup;
-			children = (
-				68E826331E111AF8002FB39B /* coldplay01.jpg */,
-				68E826341E111AF8002FB39B /* coldplay02.jpg */,
-				68E826351E111AF8002FB39B /* coldplay03.jpg */,
-				68E826361E111AF8002FB39B /* coldplay04.jpg */,
-				68E826371E111AF8002FB39B /* coldplay05.jpg */,
-				68E826381E111AF8002FB39B /* coldplay06.jpg */,
-				68E826391E111AF8002FB39B /* coldplay07.jpg */,
-				68E8263A1E111AF8002FB39B /* coldplay08.jpg */,
-				68E8263B1E111AF8002FB39B /* coldplay09.jpg */,
-			);
-			path = coldplay;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,18 +250,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68E826421E111AF8002FB39B /* coldplay07.jpg in Resources */,
-				68E8263D1E111AF8002FB39B /* coldplay02.jpg in Resources */,
-				68E826431E111AF8002FB39B /* coldplay08.jpg in Resources */,
-				68E826411E111AF8002FB39B /* coldplay06.jpg in Resources */,
-				68E826401E111AF8002FB39B /* coldplay05.jpg in Resources */,
 				68E825BD1E11196E002FB39B /* Assets.xcassets in Resources */,
-				68E8263C1E111AF8002FB39B /* coldplay01.jpg in Resources */,
-				68E8263E1E111AF8002FB39B /* coldplay03.jpg in Resources */,
 				68E825BB1E11196E002FB39B /* Main.storyboard in Resources */,
 				6EBF581E1EB1165900B2B986 /* LaunchScreen.storyboard in Resources */,
-				68E826441E111AF8002FB39B /* coldplay09.jpg in Resources */,
-				68E8263F1E111AF8002FB39B /* coldplay04.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
