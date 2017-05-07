@@ -25,6 +25,6 @@
 
 @property (nonatomic, strong) SRPictureModel *pictureModel;
 
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong, readonly) UIImageView *imageView;
 
 @end

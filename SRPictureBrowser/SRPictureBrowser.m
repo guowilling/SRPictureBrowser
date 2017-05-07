@@ -12,7 +12,7 @@
 #import "SRPictureModel.h"
 #import "SRPictureManager.h"
 
-@interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureViewDelegate>
+@interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureCellDelegate, SRPictureViewDelegate>
 
 @property (nonatomic, weak) id<SRPictureBrowserDelegate> delegate;
 
@@ -139,6 +139,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     SRPictureCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:pictureViewID forIndexPath:indexPath];
+    cell.delegate = self;
     cell.pictureView.pictureViewDelegate = self;
     cell.pictureModel = self.pictureModels[indexPath.row];
     if (!_currentPictureView) {
@@ -173,6 +174,23 @@
         SRPictureModel *preModel = [self.pictureModels objectAtIndex:self.currentIndex - 1];
         [SRPictureManager prefetchDownloadPicture:preModel.picURLString];
     }
+}
+
+#pragma mark - SRPictureCellDelegate
+
+- (void)pictureCellDidPanToAlpha:(CGFloat)alpha {
+    
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:alpha];
+    self.pageControl.alpha = alpha;
+}
+
+- (void)pictureCellDidPanToDismiss {
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    if ([self.delegate respondsToSelector:@selector(pictureBrowserDidDismiss)]) {
+        [self.delegate pictureBrowserDidDismiss];
+    }
+    [self removeFromSuperview];
 }
 
 #pragma mark - SRPictureViewDelegate

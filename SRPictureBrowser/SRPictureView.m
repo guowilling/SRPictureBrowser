@@ -28,6 +28,7 @@
         self.showsVerticalScrollIndicator = NO;
         self.maximumZoomScale = 2.0;
         self.minimumZoomScale = 1.0;
+        self.alwaysBounceVertical = YES;
         
         _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
