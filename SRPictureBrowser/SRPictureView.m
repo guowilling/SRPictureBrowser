@@ -67,12 +67,8 @@
         _pictureIndicator = nil;
     }
     
-    UIImage *picture = [SRPictureManager pictureFromSandbox:self.pictureModel.picURLString];
-    if (picture) {
-        if (CGRectEqualToRect(self.pictureModel.destinationPosition, CGRectZero)) {
-            [SRPictureModel calculateDestinationPositionWithPictureModel:self.pictureModel picture:picture];
-        }
-        self.imageView.image = picture;
+    if (self.pictureModel.picture) {
+        self.imageView.image = self.pictureModel.picture;
         if (self.pictureModel.isFirstShow) {
             self.imageView.frame = self.pictureModel.originPosition;
             self.contentSize = pictureModel.destinationPosition.size;
@@ -88,7 +84,7 @@
         [SRPictureManager downloadPicture:self.pictureModel.picURLString success:^(UIImage *picture) {
             _pictureIndicator = [_pictureIndicator hide];
             _pictureIndicator = nil;
-            [SRPictureModel calculateDestinationPositionWithPictureModel:self.pictureModel picture:picture];
+            self.pictureModel.picture = picture;
             self.imageView.image = picture;
             self.imageView.frame = self.pictureModel.destinationPosition;
             self.contentSize = pictureModel.destinationPosition.size;

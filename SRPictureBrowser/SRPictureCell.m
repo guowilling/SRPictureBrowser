@@ -61,7 +61,7 @@
         }];
     } else {
         _pictureView.contentInset = UIEdgeInsetsMake(-_pictureView.contentOffset.y, 0, 0, 0);
-        CGFloat alpha = 1 - ABS(_pictureView.contentOffset.y/(self.bounds.size.height));
+        CGFloat alpha = 1 - ABS(_pictureView.contentOffset.y / (self.bounds.size.height));
         if ([self.delegate respondsToSelector:@selector(pictureCellDidPanToAlpha:)]) {
             [self.delegate pictureCellDidPanToAlpha:alpha];
         }

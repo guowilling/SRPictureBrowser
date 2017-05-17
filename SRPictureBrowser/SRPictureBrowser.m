@@ -11,6 +11,7 @@
 #import "SRPictureView.h"
 #import "SRPictureModel.h"
 #import "SRPictureManager.h"
+#import "SRPictureHUD.h"
 
 @interface SRPictureBrowser () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, SRPictureCellDelegate, SRPictureViewDelegate>
 
@@ -118,8 +119,11 @@
     _screenImageView.hidden = NO;
     _pageControl.hidden = YES;
     
-    self.currentPictureView.zoomScale = 1.0;
-    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    if (self.currentPictureView.zoomScale != 1.0) {
+        self.currentPictureView.zoomScale = 1.0;
+    }
+    
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.currentPictureView.imageView.frame = self.currentPictureView.pictureModel.originPosition;
     } completion:^(BOOL finished) {
         if ([self.delegate respondsToSelector:@selector(pictureBrowserDidDismiss)]) {
@@ -168,11 +172,15 @@
     
     if (self.currentIndex + 1 < self.pictureModels.count) {
         SRPictureModel *nextModel = [self.pictureModels objectAtIndex:self.currentIndex + 1];
-        [SRPictureManager prefetchDownloadPicture:nextModel.picURLString];
+        [SRPictureManager prefetchDownloadPicture:nextModel.picURLString success:^(UIImage *picture) {
+            nextModel.picture = picture;
+        }];
     }
     if (self.currentIndex - 1 >= 0) {
         SRPictureModel *preModel = [self.pictureModels objectAtIndex:self.currentIndex - 1];
-        [SRPictureManager prefetchDownloadPicture:preModel.picURLString];
+        [SRPictureManager prefetchDownloadPicture:preModel.picURLString success:^(UIImage *picture) {
+            preModel.picture = picture;
+        }];
     }
 }
 
@@ -219,7 +227,9 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     
     if (error) {
-        NSLog(@"didFinishSavingWithError error: %@", error);
+        [SRPictureHUD showHUDInView:self withMessage:@"Save Picture Failure!"];
+    } else {
+        [SRPictureHUD showHUDInView:self withMessage:@"Save Picture Success!"];
     }
 }
 

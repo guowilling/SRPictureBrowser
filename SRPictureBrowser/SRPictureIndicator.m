@@ -41,7 +41,6 @@ static NSString * const strokeAnimationKey   = @"strokeAnimation";
     
     [self stopAnimating];
     [self removeFromSuperview];
-    
     return self;
 }
 
@@ -127,8 +126,8 @@ static NSString * const strokeAnimationKey   = @"strokeAnimation";
     endTailAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     
     CAAnimationGroup *animations = [CAAnimationGroup animation];
-    [animations setDuration:1.5f];
-    [animations setAnimations:@[headAnimation, tailAnimation, endHeadAnimation, endTailAnimation]];
+    animations.duration = 1.5;
+    animations.animations = @[headAnimation, tailAnimation, endHeadAnimation, endTailAnimation];
     animations.repeatCount = INFINITY;
     [self.progressLayer addAnimation:animations forKey:strokeAnimationKey];
 }

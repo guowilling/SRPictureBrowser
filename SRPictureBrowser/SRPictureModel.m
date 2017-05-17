@@ -35,6 +35,7 @@
     
     if (!picture) {
         picture = [SRPictureManager pictureFromSandbox:pictureModel.picURLString];
+        pictureModel->_picture = picture;
     }
     if (!picture) {
         return;
@@ -49,6 +50,13 @@
         destinationPositionY = ([UIScreen mainScreen].bounds.size.height - destinationPositionH) * 0.5;
     }
     pictureModel.destinationPosition = CGRectMake(destinationPositionX, destinationPositionY, destinationPositionW, destinationPositionH);
+}
+
+- (void)setPicture:(UIImage *)picture {
+    
+    _picture = picture;
+    
+    [self.class calculateDestinationPositionWithPictureModel:self picture:picture];
 }
 
 @end
