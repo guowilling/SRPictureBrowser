@@ -1,14 +1,18 @@
 # SRPictureBrowser
 
-A light-weight and easy-to-extend picture browser. Not rely on any third-party libraries to download and cache picture.
-
-## Screenshots
+Light-weight and easy-to-extend picture browser. Not rely on any third-party libraries to download and cache picture.
 
 ![image](./Screenshots/screenshots1.png) ![image](./Screenshots/screenshots2.png)
 
-![image](./Screenshots/screenshots3.png) ![image](./Screenshots/screenshots4.png)
+## Features
 
-## Usage
+* Show and dismiss picture browser have zoom animation effects.
+* Load the web picture has waiting animation effect.
+* Support kneading or double clicking the picture to zoom the view.
+* Support long press the picture to evoke other interactive options.
+* Support drag down the picture to dismiss the picture browser.
+
+## APIs
 
 ````objc
 /**
@@ -31,6 +35,8 @@ A light-weight and easy-to-extend picture browser. Not rely on any third-party l
  */
 + (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString containerView:(UIView *)containerView positionInContainer:(CGRect)positionInContainer index:(NSInteger)index;
 ````
+
+## Usage
 
 ````objc
 UIImageView *tapedImageView = (UIImageView *)tapGestureRecognizer.view;

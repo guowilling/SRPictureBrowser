@@ -23,7 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		68A0ADED1E53FD1E00A8BCEF /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		68A23F081EBA003000EF0DEC /* SRPictureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPictureManager.h; sourceTree = "<group>"; };
 		68A23F091EBA003000EF0DEC /* SRPictureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPictureManager.m; sourceTree = "<group>"; };
 		68E825AD1E11196E002FB39B /* SRPictureBrowserDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SRPictureBrowserDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,20 +60,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		68A0ADEC1E53FD1E00A8BCEF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				68A0ADED1E53FD1E00A8BCEF /* ImageIO.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		68E825A41E11196E002FB39B = {
 			isa = PBXGroup;
 			children = (
 				68E825AF1E11196E002FB39B /* SRPictureBrowserDemo */,
 				68E825AE1E11196E002FB39B /* Products */,
-				68A0ADEC1E53FD1E00A8BCEF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

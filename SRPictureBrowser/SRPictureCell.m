@@ -44,6 +44,9 @@
         if (ABS(_pictureView.contentOffset.y) < kPanToDimissOffsetY) {
             [UIView animateWithDuration:0.5 animations:^{
                 _pictureView.contentInset = UIEdgeInsetsZero;
+                if ([self.delegate respondsToSelector:@selector(pictureCellDidPanToAlpha:)]) {
+                    [self.delegate pictureCellDidPanToAlpha:1.0];
+                }
             }];
             return;
         }
