@@ -2,15 +2,15 @@
 
 Light-weight and easy-to-extend picture browser. Not rely on any third-party libraries to download and cache picture.
 
-![image](./Screenshots/screenshots1.png) ![image](./Screenshots/screenshots2.png)
+![image](./screenshots.png)
 
 ## Features
 
-* Show and dismiss picture browser have zoom animation effects.
-* Load the web picture has waiting animation effect.
-* Support kneading or double clicking the picture to zoom the view.
-* Support long press the picture to evoke other interactive options.
-* Support drag down the picture to dismiss the picture browser.
+* [x] There are zoom animation effects when showing or dismissing the picture browser.
+* [x] There is cyclic animation effect when loading the network picture.
+* [x] Support kneading or double tapping the view to zoom the picture.
+* [x] Support dragging down the picture to dismiss the picture browser.
+* [x] Support long pressing the picture to evoke other interactive options.
 
 ## APIs
 
