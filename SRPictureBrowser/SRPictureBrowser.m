@@ -98,6 +98,9 @@
         _pageControl.numberOfPages = self.pictureModels.count;
         _pageControl.currentPage = self.currentIndex;
         _pageControl.userInteractionEnabled = NO;
+        if (_pictureModels.count == 1) {
+            _pageControl.hidden = YES;
+        }
         _pageControl;
     })];
 }
