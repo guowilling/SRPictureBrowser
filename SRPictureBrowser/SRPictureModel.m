@@ -18,7 +18,6 @@
 @implementation SRPictureModel
 
 + (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString containerView:(UIView *)containerView positionInContainer:(CGRect)positionInContainer index:(NSInteger)index {
-    
     SRPictureModel *pictureModel = [[SRPictureModel alloc] init];
     pictureModel.picURLString = picURLString;
     if (containerView) {
@@ -32,7 +31,6 @@
 }
 
 + (void)calculateDestinationPositionWithPictureModel:(SRPictureModel *)pictureModel picture:(UIImage *)picture {
-    
     if (!picture) {
         picture = [SRPictureManager pictureFromSandbox:pictureModel.picURLString];
         pictureModel->_picture = picture;
@@ -53,7 +51,6 @@
 }
 
 - (void)setPicture:(UIImage *)picture {
-    
     _picture = picture;
     
     [self.class calculateDestinationPositionWithPictureModel:self picture:picture];

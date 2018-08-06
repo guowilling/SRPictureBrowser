@@ -12,6 +12,6 @@
 
 + (instancetype)showInView:(UIView *)view;
 
-- (instancetype)hide;
+- (void)hide;
 
 @end

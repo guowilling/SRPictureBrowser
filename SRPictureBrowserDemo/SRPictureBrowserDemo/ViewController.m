@@ -13,6 +13,7 @@
 @interface ViewController () <SRPictureBrowserDelegate>
 
 @property (nonatomic, strong) NSArray *picURLStrings;
+
 @property (nonatomic, strong) NSMutableArray *imageViewFrames;
 
 @end
@@ -20,12 +21,10 @@
 @implementation ViewController
 
 - (BOOL)prefersStatusBarHidden {
-    
     return YES;
 }
 
 - (NSMutableArray *)imageViewFrames {
-    
     if (!_imageViewFrames) {
         _imageViewFrames = [NSMutableArray array];
     }
@@ -33,7 +32,6 @@
 }
 
 - (NSArray *)picURLStrings {
-
     if (!_picURLStrings) {
         _picURLStrings = @[@"http://i1.piimg.com/593517/dcd2b32545e44ca0.jpg",
                            @"http://i1.piimg.com/593517/200c2de8ea0ce7aa.jpg",
@@ -49,7 +47,6 @@
 }
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     UIView *container = [[UIView alloc] init];
@@ -84,7 +81,6 @@
 }
 
 - (void)imageTapAction:(UITapGestureRecognizer *)tapGestureRecognizer {
-    
     UIImageView *tapedImageView = (UIImageView *)tapGestureRecognizer.view;
     NSMutableArray *imageBrowserModels = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < self.picURLStrings.count; i ++) {
@@ -98,12 +94,10 @@
 }
 
 - (void)pictureBrowserDidShow:(SRPictureBrowser *)pictureBrowser {
-    
     NSLog(@"%s", __func__);
 }
 
 - (void)pictureBrowserDidDismiss {
-    
     NSLog(@"%s", __func__);
 }
 

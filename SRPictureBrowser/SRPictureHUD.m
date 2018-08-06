@@ -11,14 +11,12 @@
 @implementation SRPictureHUD
 
 + (instancetype)showHUDInView:(UIView*)view withMessage:(NSString*)message {
-    
     SRPictureHUD *hud = [[SRPictureHUD alloc] initWithFrame:view.bounds mesasge:message];
     [view addSubview:hud];
     return hud;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame mesasge:(NSString*)message {
-    
     if (self = [super initWithFrame:frame]) {
         self.userInteractionEnabled = NO;
         _autoDismiss = YES;
@@ -29,7 +27,6 @@
 }
 
 - (void)setupHUDWithMessage:(NSString*)message {
-    
     CGSize fitSize = [message boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
                                            options:NSStringDrawingUsesLineFragmentOrigin
                                         attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]}
@@ -58,7 +55,6 @@
 }
 
 - (void)setAutoDismiss:(BOOL)autoDismiss {
-    
     _autoDismiss = autoDismiss;
     
     if (!autoDismiss) {
@@ -67,7 +63,6 @@
 }
 
 - (void)setDuration:(NSTimeInterval)duration {
-    
     _duration = duration;
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
@@ -75,7 +70,6 @@
 }
 
 - (void)hide {
-    
     [UIView animateWithDuration:0.5 animations:^{
         self.alpha = 0.01;
         self.transform = CGAffineTransformMakeScale(0.01, 0.01);

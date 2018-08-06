@@ -22,12 +22,10 @@ static NSString * const strokeAnimationKey   = @"strokeAnimation";
 @implementation SRPictureIndicator
 
 - (void)dealloc {
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 + (instancetype)showInView:(UIView *)view {
-    
     if (!view) {
         view = [UIApplication sharedApplication].keyWindow;
     }
@@ -37,15 +35,12 @@ static NSString * const strokeAnimationKey   = @"strokeAnimation";
     return pictureIndicator;
 }
 
-- (instancetype)hide {
-    
+- (void)hide {
     [self stopAnimating];
     [self removeFromSuperview];
-    return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    
     if (self = [super initWithFrame:frame]) {
         self.center = [UIApplication sharedApplication].keyWindow.center;
         self.tintColor = [UIColor colorWithWhite:1.0 alpha:0.75];
@@ -64,11 +59,9 @@ static NSString * const strokeAnimationKey   = @"strokeAnimation";
 }
 
 - (void)layoutSubviews {
-    
     [super layoutSubviews];
     
     self.progressLayer.frame = self.bounds;
-    
     CGPoint center = CGPointMake(self.frame.size.width * 0.5, self.frame.size.height * 0.5);
     CGFloat radius = MIN(center.x, center.y) - self.progressLayer.lineWidth * 0.5;
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0 endAngle:2 * M_PI clockwise:YES];
@@ -78,14 +71,12 @@ static NSString * const strokeAnimationKey   = @"strokeAnimation";
 }
 
 - (void)tintColorDidChange {
-    
     [super tintColorDidChange];
     
     self.progressLayer.strokeColor = self.tintColor.CGColor;
 }
 
 - (void)startAnimating {
-    
     CABasicAnimation *animation = [CABasicAnimation animation];
     animation.keyPath     = @"transform.rotation";
     animation.duration    = 4.f;
@@ -107,7 +98,6 @@ static NSString * const strokeAnimationKey   = @"strokeAnimation";
     tailAnimation.fromValue = @(0.f);
     tailAnimation.toValue   = @(1.f);
     tailAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    
     
     CABasicAnimation *endHeadAnimation = [CABasicAnimation animation];
     endHeadAnimation.keyPath   = @"strokeStart";
@@ -133,13 +123,11 @@ static NSString * const strokeAnimationKey   = @"strokeAnimation";
 }
 
 - (void)stopAnimating {
-    
     [self.progressLayer removeAnimationForKey:rotationAnimationKey];
     [self.progressLayer removeAnimationForKey:strokeAnimationKey];
 }
 
 - (void)applicationDidBecomeActive {
-    
     [self stopAnimating];
     [self startAnimating];
 }

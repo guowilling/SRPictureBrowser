@@ -33,7 +33,6 @@
 @implementation SRPictureBrowser
 
 + (void)sr_showPictureBrowserWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate {
-    
     SRPictureBrowser *pictureBrowser = [[self alloc] initWithModels:pictureModels currentIndex:currentIndex delegate:delegate];
     [pictureBrowser show];
 }
@@ -41,7 +40,6 @@
 #pragma mark - Initialize
 
 - (id)initWithModels:(NSArray *)pictureModels currentIndex:(NSInteger)currentIndex delegate:(id<SRPictureBrowserDelegate>)delegate {
-    
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         _pictureModels = pictureModels;
         _currentIndex = currentIndex;
@@ -58,7 +56,6 @@
 }
 
 - (void)setup {
-    
     self.backgroundColor = [UIColor blackColor];
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
@@ -108,17 +105,16 @@
 #pragma mark - Animation
 
 - (void)show {
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:self];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
     if ([self.delegate respondsToSelector:@selector(pictureBrowserDidShow:)]) {
         [self.delegate pictureBrowserDidShow:self];
     }
 }
 
 - (void)dismiss {
-    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
     _screenImageView.hidden = NO;
     _pageControl.hidden = YES;
     
@@ -139,12 +135,10 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return self.pictureModels.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     SRPictureCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:pictureViewID forIndexPath:indexPath];
     cell.delegate = self;
     cell.pictureView.pictureViewDelegate = self;
@@ -158,7 +152,6 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
     NSInteger index = scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
     self.currentIndex = index;
     self.pageControl.currentPage = index;
@@ -190,13 +183,11 @@
 #pragma mark - SRPictureCellDelegate
 
 - (void)pictureCellDidPanToAlpha:(CGFloat)alpha {
-    
     self.backgroundColor = [UIColor colorWithWhite:0 alpha:alpha];
     self.pageControl.alpha = alpha;
 }
 
 - (void)pictureCellDidPanToDismiss {
-    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     if ([self.delegate respondsToSelector:@selector(pictureBrowserDidDismiss)]) {
         [self.delegate pictureBrowserDidDismiss];
@@ -206,13 +197,11 @@
 
 #pragma mark - SRPictureViewDelegate
 
-- (void)pictureViewDidTapToDismissPictureBrowser {
-    
+- (void)pictureViewDidTap {
     [self dismiss];
 }
 
 - (void)pictureViewDidLongPress {
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
@@ -221,14 +210,12 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
     if (buttonIndex == 0) {
         UIImageWriteToSavedPhotosAlbum(self.currentPictureView.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     }
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
-    
     if (error) {
         [SRPictureHUD showHUDInView:self withMessage:@"Save Picture Failure!"];
     } else {

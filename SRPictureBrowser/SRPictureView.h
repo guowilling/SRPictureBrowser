@@ -14,7 +14,7 @@
 
 @optional
 
-- (void)pictureViewDidTapToDismissPictureBrowser;
+- (void)pictureViewDidTap;
 - (void)pictureViewDidLongPress;
 
 @end

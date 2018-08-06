@@ -15,7 +15,6 @@
 @implementation SRPictureCell
 
 - (id)initWithFrame:(CGRect)frame {
-    
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         _pictureView = [[SRPictureView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -26,14 +25,12 @@
 }
 
 - (void)setPictureModel:(SRPictureModel *)pictureModel {
-    
     _pictureModel = pictureModel;
     
     _pictureView.pictureModel = pictureModel;
 }
 
 - (void)scrollViewPanAction:(UIPanGestureRecognizer*)pan {
-    
     if (_pictureView.zoomScale != 1.0) {
         return;
     }
@@ -48,20 +45,20 @@
                     [self.delegate pictureCellDidPanToAlpha:1.0];
                 }
             }];
-            return;
+        } else {
+            [UIView animateWithDuration:0.5 animations:^{
+                CGRect frame = _pictureView.imageView.frame;
+                frame.origin.y = self.bounds.size.height;
+                _pictureView.imageView.frame = frame;
+                if ([self.delegate respondsToSelector:@selector(pictureCellDidPanToAlpha:)]) {
+                    [self.delegate pictureCellDidPanToAlpha:0];
+                }
+            } completion:^(BOOL finished) {
+                if ([self.delegate respondsToSelector:@selector(pictureCellDidPanToDismiss)]) {
+                    [self.delegate pictureCellDidPanToDismiss];
+                }
+            }];
         }
-        [UIView animateWithDuration:0.5 animations:^{
-            CGRect frame = _pictureView.imageView.frame;
-            frame.origin.y = self.bounds.size.height;
-            _pictureView.imageView.frame = frame;
-            if ([self.delegate respondsToSelector:@selector(pictureCellDidPanToAlpha:)]) {
-                [self.delegate pictureCellDidPanToAlpha:0];
-            }
-        } completion:^(BOOL finished) {
-            if ([self.delegate respondsToSelector:@selector(pictureCellDidPanToDismiss)]) {
-                [self.delegate pictureCellDidPanToDismiss];
-            }
-        }];
     } else {
         _pictureView.contentInset = UIEdgeInsetsMake(-_pictureView.contentOffset.y, 0, 0, 0);
         CGFloat alpha = 1 - ABS(_pictureView.contentOffset.y / (self.bounds.size.height));

@@ -33,6 +33,4 @@
  */
 + (instancetype)sr_pictureModelWithPicURLString:(NSString *)picURLString containerView:(UIView *)containerView positionInContainer:(CGRect)positionInContainer index:(NSInteger)index;
 
-+ (void)calculateDestinationPositionWithPictureModel:(SRPictureModel *)pictureModel picture:(UIImage *)picture;
-
 @end

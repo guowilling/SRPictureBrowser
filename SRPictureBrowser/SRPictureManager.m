@@ -18,7 +18,6 @@ stringByAppendingPathComponent:NSStringFromClass([self class])]
 @implementation SRPictureManager
 
 + (void)load {
-    
     NSString *imagesDirectory = SRPicturesDirectory;
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -29,7 +28,6 @@ stringByAppendingPathComponent:NSStringFromClass([self class])]
 }
 
 + (UIImage *)pictureFromSandbox:(NSString *)URLString {
-    
     NSString *imagePath = SRPicturePath(URLString);
     NSData *data = [NSData dataWithContentsOfFile:imagePath];
     if (data.length > 0 ) {
@@ -41,7 +39,6 @@ stringByAppendingPathComponent:NSStringFromClass([self class])]
 }
 
 + (void)downloadPicture:(NSString *)URLString success:(void (^)(UIImage *picture))success failure:(void (^)(NSError *error))failure {
-    
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:URLString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
             if (failure) {
@@ -49,23 +46,21 @@ stringByAppendingPathComponent:NSStringFromClass([self class])]
             }
             return;
         }
+        [data writeToFile:SRPicturePath(URLString) atomically:YES];
+        UIImage *image = [UIImage imageWithData:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
-                UIImage *image = [UIImage imageWithData:data];
                 success(image);
             }
         });
-        [data writeToFile:SRPicturePath(URLString) atomically:YES];
     }] resume];
 }
 
 + (void)prefetchDownloadPicture:(NSString *)URLString success:(void (^)(UIImage *picture))success {
-    
     [self downloadPicture:URLString success:success failure:nil];
 }
 
 + (void)clearCachedImages {
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *fileNames = [fileManager contentsOfDirectoryAtPath:SRPicturesDirectory error:nil];
     for (NSString *fileName in fileNames) {
