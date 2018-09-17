@@ -10,13 +10,16 @@
 
 @implementation SRPictureHUD
 
-+ (instancetype)showHUDInView:(UIView*)view withMessage:(NSString*)message {
++ (instancetype)showHUDInView:(UIView *)view withMessage:(NSString *)message {
+    if (view == nil) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
     SRPictureHUD *hud = [[SRPictureHUD alloc] initWithFrame:view.bounds mesasge:message];
     [view addSubview:hud];
     return hud;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame mesasge:(NSString*)message {
+- (instancetype)initWithFrame:(CGRect)frame mesasge:(NSString *)message {
     if (self = [super initWithFrame:frame]) {
         self.userInteractionEnabled = NO;
         _autoDismiss = YES;
@@ -26,20 +29,20 @@
     return self;
 }
 
-- (void)setupHUDWithMessage:(NSString*)message {
-    CGSize fitSize = [message boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
-                                           options:NSStringDrawingUsesLineFragmentOrigin
-                                        attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]}
-                                           context:nil].size;
+- (void)setupHUDWithMessage:(NSString *)message {
+    CGSize messageSize = [message boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                            attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]}
+                                               context:nil].size;
     CGFloat margin = 25;
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, fitSize.width + margin, fitSize.height + margin)];
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, messageSize.width + margin, messageSize.height + margin)];
     container.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
     container.center = self.center;
     container.layer.cornerRadius = 5;
     container.layer.masksToBounds = YES;
     [self addSubview:container];
     
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
     effectView.frame = container.bounds;
     [container addSubview:effectView];
@@ -70,7 +73,7 @@
 }
 
 - (void)hide {
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 0.01;
         self.transform = CGAffineTransformMakeScale(0.01, 0.01);
     } completion:^(BOOL finished) {

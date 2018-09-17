@@ -14,7 +14,7 @@
 
 @property (nonatomic, assign) NSTimeInterval duration;
 
-+ (instancetype)showHUDInView:(UIView*)view withMessage:(NSString*)message;
++ (instancetype)showHUDInView:(UIView *)view withMessage:(NSString *)message;
 
 - (void)hide;
 

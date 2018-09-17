@@ -14,6 +14,7 @@
 
 @optional
 - (void)pictureBrowserDidShow:(SRPictureBrowser *)pictureBrowser;
+- (void)pictureBrowserDidLongPressPicture:(UIImage *)picture;
 - (void)pictureBrowserDidDismiss;
 
 @end

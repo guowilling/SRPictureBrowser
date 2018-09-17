@@ -11,29 +11,42 @@
 #define SRPicturesDirectory      [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] \
 stringByAppendingPathComponent:NSStringFromClass([self class])]
 
-#define SRPictureName(URLString) [URLString lastPathComponent]
+//#define SRPictureName(URLString) [URLString lastPathComponent]
 
-#define SRPicturePath(URLString) [SRPicturesDirectory stringByAppendingPathComponent:SRPictureName(URLString)]
+//#define SRPicturePath(URLString) [SRPicturesDirectory stringByAppendingPathComponent:SRPictureName(URLString)]
 
 @implementation SRPictureManager
 
 + (void)load {
-    NSString *imagesDirectory = SRPicturesDirectory;
+    NSString *directory = SRPicturesDirectory;
     BOOL isDirectory = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isExists = [fileManager fileExistsAtPath:imagesDirectory isDirectory:&isDirectory];
+    BOOL isExists = [fileManager fileExistsAtPath:directory isDirectory:&isDirectory];
     if (!isExists || !isDirectory) {
-        [fileManager createDirectoryAtPath:imagesDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+        [fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:nil];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearCachedPictures) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+}
+
++ (NSString *)picturePath:(NSString *)URLString {
+    NSString *pictureName = nil;
+    NSString *query = [NSURL URLWithString:URLString].query;
+    if (query) {
+        pictureName = [URLString stringByReplacingOccurrencesOfString:query withString:@""];
+        pictureName = [pictureName stringByReplacingOccurrencesOfString:@"?" withString:@""];
+    }
+    pictureName = pictureName.lastPathComponent;
+    return [SRPicturesDirectory stringByAppendingPathComponent:pictureName];
 }
 
 + (UIImage *)pictureFromSandbox:(NSString *)URLString {
-    NSString *imagePath = SRPicturePath(URLString);
-    NSData *data = [NSData dataWithContentsOfFile:imagePath];
+    NSString *picturePath = [self picturePath:URLString];
+    NSData *data = [NSData dataWithContentsOfFile:picturePath];
     if (data.length > 0 ) {
         return [UIImage imageWithData:data];
     } else {
-        [[NSFileManager defaultManager] removeItemAtPath:imagePath error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:picturePath error:NULL];
     }
     return nil;
 }
@@ -46,11 +59,11 @@ stringByAppendingPathComponent:NSStringFromClass([self class])]
             }
             return;
         }
-        [data writeToFile:SRPicturePath(URLString) atomically:YES];
-        UIImage *image = [UIImage imageWithData:data];
+        [data writeToFile:[self picturePath:URLString] atomically:YES];
+        UIImage *picture = [UIImage imageWithData:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
-                success(image);
+                success(picture);
             }
         });
     }] resume];
@@ -60,7 +73,7 @@ stringByAppendingPathComponent:NSStringFromClass([self class])]
     [self downloadPicture:URLString success:success failure:nil];
 }
 
-+ (void)clearCachedImages {
++ (void)clearCachedPictures {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *fileNames = [fileManager contentsOfDirectoryAtPath:SRPicturesDirectory error:nil];
     for (NSString *fileName in fileNames) {

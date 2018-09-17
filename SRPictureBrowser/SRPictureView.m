@@ -19,7 +19,7 @@
 
 @implementation SRPictureView
 
-- (id)initWithFrame:(CGRect)frame{
+- (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         self.delegate = self;

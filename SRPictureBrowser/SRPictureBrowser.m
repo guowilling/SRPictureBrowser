@@ -106,7 +106,9 @@
 
 - (void)show {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
     [[UIApplication sharedApplication].keyWindow addSubview:self];
+    
     if ([self.delegate respondsToSelector:@selector(pictureBrowserDidShow:)]) {
         [self.delegate pictureBrowserDidShow:self];
     }
@@ -202,24 +204,8 @@
 }
 
 - (void)pictureViewDidLongPress {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Save", nil];
-    [actionSheet showInView:self];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        UIImageWriteToSavedPhotosAlbum(self.currentPictureView.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-    }
-}
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
-    if (error) {
-        [SRPictureHUD showHUDInView:self withMessage:@"Save Picture Failure!"];
-    } else {
-        [SRPictureHUD showHUDInView:self withMessage:@"Save Picture Success!"];
+    if ([self.delegate respondsToSelector:@selector(pictureBrowserDidLongPressPicture:)]) {
+        [self.delegate pictureBrowserDidLongPressPicture:self.currentPictureView.imageView.image];
     }
 }
 

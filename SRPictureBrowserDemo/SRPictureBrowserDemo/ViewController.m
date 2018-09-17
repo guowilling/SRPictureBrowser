@@ -2,13 +2,15 @@
 //  ViewController.m
 //  SRPictureBrowserDemo
 //
-//  Created by 郭伟林 on 16/12/26.
+//  Created by Willing Guo on 16/12/26.
 //  Copyright © 2016年 SR. All rights reserved.
 //
 
 #import "ViewController.h"
 #import "SRPictureBrowser.h"
 #import "SRPictureModel.h"
+#import "SRActionSheet.h"
+#import "SRPictureHUD.h"
 
 @interface ViewController () <SRPictureBrowserDelegate>
 
@@ -33,15 +35,15 @@
 
 - (NSArray *)picURLStrings {
     if (!_picURLStrings) {
-        _picURLStrings = @[@"http://i1.piimg.com/593517/dcd2b32545e44ca0.jpg",
-                           @"http://i1.piimg.com/593517/200c2de8ea0ce7aa.jpg",
-                           @"http://i1.piimg.com/593517/31386bf8c82df9b4.jpg",
-                           @"http://i1.piimg.com/593517/91e3e497b0317894.jpg",
-                           @"http://i1.piimg.com/593517/182ef6ae1dbc9387.jpg",
-                           @"http://i1.piimg.com/593517/544edc9a6aedb6be.jpg",
-                           @"http://i1.piimg.com/593517/50385447a659214a.jpg",
-                           @"http://i1.piimg.com/593517/c584637b3f869b53.jpg",
-                           @"http://i1.piimg.com/593517/11035002ebf2781f.jpg"];
+        _picURLStrings = @[@"https://yixunfiles-ali.yixun.arhieason.com/37f60c4f4489e5e9d68032344997dbc1_jpg.jpg?x-oss-process=image/format,png",
+                           @"https://yixunfiles-ali.yixun.arhieason.com/53dc63984fde3bc385c4d9158cbfbae1_jpg.jpg?x-oss-process=image/format,png",
+                           @"https://yixunfiles-ali.yixun.arhieason.com/e15612e17e541408884ae3a83264a1bc_jpg.jpg?x-oss-process=image/format,png",
+                           @"https://yixunfiles-ali.yixun.arhieason.com/2378646302510db4707ce140489777ab_jpg.jpg?x-oss-process=image/format,png",
+                           @"https://yixunfiles-ali.yixun.arhieason.com/af1e7c76740360800d796c11bf920562_jpg.jpg?x-oss-process=image/format,png",
+                           @"https://yixunfiles-ali.yixun.arhieason.com/075dccde0047e04c8087e422627b3057_jpg.jpg?x-oss-process=image/format,png",
+                           @"https://yixunfiles-ali.yixun.arhieason.com/d5e52ff8d2d32aacb1d9212149fd91bb_jpg.jpg?x-oss-process=image/format,png",
+                           @"https://yixunfiles-ali.yixun.arhieason.com/a6ae817ccd7270e9cb2ad110fd0e10b4_jpg.jpg?x-oss-process=image/format,png",
+                           @"https://yixunfiles-ali.yixun.arhieason.com/319d1a79606f3a1e5415faadd0e147d8_jpg.jpg?x-oss-process=image/format,png"];
     }
     return _picURLStrings;
 }
@@ -95,6 +97,27 @@
 
 - (void)pictureBrowserDidShow:(SRPictureBrowser *)pictureBrowser {
     NSLog(@"%s", __func__);
+}
+
+- (void)pictureBrowserDidLongPressPicture:(UIImage *)picture {
+    [[SRActionSheet sr_actionSheetViewWithTitle:nil
+                                    cancelTitle:@"Cancel"
+                               destructiveTitle:@"Sure"
+                                    otherTitles:@[@"Save", @"More"]
+                                    otherImages:nil
+                              selectActionBlock:^(SRActionSheet *actionSheet, NSInteger index) {
+                                  if (index == 0) {
+                                      UIImageWriteToSavedPhotosAlbum(picture, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+                                  }
+                              }] show];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    if (error) {
+        [SRPictureHUD showHUDInView:nil withMessage:@"Save Picture Failure!"];
+    } else {
+        [SRPictureHUD showHUDInView:nil withMessage:@"Save Picture Success!"];
+    }
 }
 
 - (void)pictureBrowserDidDismiss {
